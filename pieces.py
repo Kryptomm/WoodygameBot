@@ -5,6 +5,7 @@ class Piece:
         self.piece = array
         self.width =  len(array[0])
         self.heigth = len(array)
+        self.points = sum(element == 1 for row in array for element in row)
     
     def printPiece(self):
         for y in range(self.heigth):
