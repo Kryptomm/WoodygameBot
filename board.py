@@ -4,8 +4,17 @@ class Board:
         self.heigth = heigth
         self.board = [[0] * width] * heigth
         
-    def __repr__(self):
+    def printBoard(self):
+        res = ""
         for x in range(self.width):
             for y in range(self.heigth):
-                print(self.board[y][x], end="")
+                if self.board[y][x] == 1: print("🟩", end="")
+                elif self.board[y][x] == 0: print("🟥", end="")
             print("")
+            
+            
+        
+
+if __name__ == "__main__":
+    gameBoard = Board(10,10)
+    gameBoard.printBoard()
