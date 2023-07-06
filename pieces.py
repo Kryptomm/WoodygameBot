@@ -23,14 +23,11 @@ class Piece:
                 if (gameBoard[yp + y][xp + x] & self.piece[yp][xp]) >= 1:
                     return False
         return True
-        
-        return
-    
+
     def boardCoordGenerator(self, board):
         for y in range(board.width):
             for x in range(board.heigth):
                 if self.fitsAtPosition(board, x, y): yield (x,y)
-                
 
 class PieceManager:
     def __init__(self):
@@ -53,6 +50,82 @@ class PieceManager:
                 
                 Piece([
                     [1,1,1,1,1]
+                ]),
+                
+                Piece([
+                    [1],
+                    [1]
+                ]),
+                
+                Piece([
+                    [1],
+                    [1],
+                    [1]
+                ]),
+                
+                Piece([
+                    [1],
+                    [1],
+                    [1],
+                    [1]
+                ]),
+                
+                Piece([
+                    [1],
+                    [1],
+                    [1],
+                    [1],
+                    [1]
+                ]),
+                
+                Piece([
+                    [1,0,0],
+                    [1,0,0],
+                    [1,1,1]
+                ]),
+                
+                Piece([
+                    [0,0,1],
+                    [0,0,1],
+                    [1,1,1]
+                ]),
+                
+                Piece([
+                    [1,1,1],
+                    [1,0,0],
+                    [1,0,0]
+                ]),
+                
+                Piece([
+                    [1,1,1],
+                    [0,0,1],
+                    [0,0,1]
+                ]),
+                
+                Piece([
+                    [1,0],
+                    [1,1]
+                ]),
+                
+                Piece([
+                    [0,1],
+                    [1,1]
+                ]),
+                
+                Piece([
+                    [1,1],
+                    [1,0]
+                ]),
+                
+                Piece([
+                    [1,1],
+                    [0,1]
+                ]),
+                
+                Piece([
+                    [1,1,1],
+                    [1,1,1],
+                    [1,1,1]
                 ]),
         ]
         
