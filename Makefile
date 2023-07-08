@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -Wall -Wextra
+CFLAGS = -Wall -Wextra -I.
 
 SRCS = main.c board.c
 OBJS = $(SRCS:.c=.o)
@@ -14,6 +14,9 @@ $(EXECUTABLE): $(OBJS)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
+
+main.o: main.c board.h defines.h
+board.o: board.c board.h defines.h
 
 clean:
 	rm -f $(OBJS) $(EXECUTABLE)
