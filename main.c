@@ -1,6 +1,10 @@
 #include <stdio.h>
+#include <stdint.h>
+
+#include "board.h"
+#include "defines.h"
 
 int main() {
-    printf("Hello, world!\n");
+    printBoard();
     return 0;
 }
