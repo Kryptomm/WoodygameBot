@@ -3,7 +3,7 @@
 
 #include "defines.h"
 
-RewardType judgeBoard(RowType* arr);
+RewardType judgeBoard(RowType* board);
 
 
 #endif 

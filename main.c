@@ -13,9 +13,10 @@ int main() {
     randTile = getRandomTile();
     
     placeTileOnBoard(&randTile,1,1);
-
-    printf("%d\n", judgeBoard(getBoard));
-
     printBoard();
+
+
+    printf("Reward: %d",judgeBoard(board));
+
     return 0;
 }

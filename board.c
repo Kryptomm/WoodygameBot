@@ -3,14 +3,11 @@
 #include <stdint.h>
 #include <stdio.h>
 
-RowType board[BOARD_HEIGTH];
-
-RowType (*getBoard()) {
-    return board;
-}
+RowType board[BOARD_HEIGTH] = {0};
 
 void printBoard(void){
     for(uint8_t y = 0; y < BOARD_HEIGTH; y++){
+        printf("%d\t",board[y]);
         for(uint8_t x = 0; x < BOARD_WIDTH; x++){
             uint8_t block = getBlockOnBoard(x,y);
             if (block){

@@ -5,7 +5,7 @@
 
 typedef uint16_t RowType;
 typedef uint8_t TileType;
-typedef int32_t RewardType;
+typedef uint16_t RewardType;
 
 #define MAX_TILE_HEIGHT 5
 
