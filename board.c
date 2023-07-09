@@ -117,3 +117,9 @@ void pasteBoard(RowType* source[]){
         board[i] = source[i];
     }
 }
+
+void resetBoard(){
+    for(uint8_t y = 0; y < BOARD_HEIGTH; y++){
+        board[y] = 0;
+    }
+}

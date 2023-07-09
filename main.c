@@ -10,6 +10,7 @@
 #include "move.h"
 
 uint32_t points;
+uint32_t bestPoints;
 
 void playRound() {
     int maxSteps = 1000;
@@ -24,6 +25,11 @@ void playRound() {
             printTile(&(inv.tiles[0]));
             printTile(&(inv.tiles[1]));
             printTile(&(inv.tiles[2]));
+
+            if(points > bestPoints){
+                bestPoints = points;
+            }
+            points = 0;
             return;
         }
 
@@ -43,7 +49,11 @@ int main() {
 
     srand(time(NULL));
 
-    playRound();
-
+    for(uint8_t i = 0; i < 50; i++){
+        playRound();
+        resetBoard();
+    }
+    printf("\nBEST POINTS: %d\n",bestPoints);
+    
     return 0;
 }
