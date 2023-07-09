@@ -11,8 +11,8 @@ typedef uint16_t RewardType;
 #define MAX_TILE_HEIGHT 5
 
 //BOARD
-#define BOARD_WIDTH 5
-#define BOARD_HEIGTH 5
+#define BOARD_WIDTH 8
+#define BOARD_HEIGTH 8
 
 //POINTS
 #define FOUR_ATONCE_BONUS 200
