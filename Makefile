@@ -11,7 +11,7 @@ all: $(TARGET)
 $(TARGET): $(OBJS)
 	$(CC) $(CFLAGS) -o $(TARGET) $(OBJS)
 
-%.o: %.c
+%.o: %.c defines.h
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:

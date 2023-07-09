@@ -32,10 +32,12 @@ uint8_t isPlaceable(Tile* tile, uint8_t x, uint8_t y) {
     return 1;
 }
 
-void placeTileOnBoard(Tile* tile, uint8_t x, uint8_t y){
+uint8_t placeTileOnBoard(Tile* tile, uint8_t x, uint8_t y){
+    if (!isPlaceable(tile,x,y)) return 0;
     for (uint8_t i = 0; i < tile->height; i++) {
         board[y + i] |= (tile->grid[i] << (16 - x  - tile->width));
     }
+    return 1;
 }
 
 //Gets a Single Block on Board

@@ -141,8 +141,8 @@ void initTiles() {
 }
 
 Tile getRandomTile() {
-    srand(time(NULL));
+    random(time(NULL));(time(NULL));
     size_t numTiles = sizeof(tiles) / sizeof(tiles[0]);
-    size_t randomIndex = rand() % numTiles;
+    size_t randomIndex = random() % numTiles;
     return tiles[randomIndex];
 }

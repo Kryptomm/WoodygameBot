@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdint.h>
+#include <time.h>
 
 #include "board.h"
 #include "defines.h"
@@ -9,12 +10,14 @@
 int main() {
     initTiles();
 
-    Tile randTile;
-    randTile = getRandomTile();
+    srandom(time(NULL));
+    for(int i = 0; i < 5; i++){
+        Tile randTile;
+        randTile = getRandomTile();
+        placeTileOnBoard(&randTile, (uint8_t) (random() % BOARD_WIDTH), (uint8_t) (random() % BOARD_HEIGTH));
+    }
     
-    placeTileOnBoard(&randTile,1,1);
     printBoard();
-
 
     printf("Reward: %d",judgeBoard(board));
 

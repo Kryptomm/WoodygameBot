@@ -9,8 +9,8 @@ typedef uint16_t RewardType;
 
 #define MAX_TILE_HEIGHT 5
 
-#define BOARD_WIDTH 5
-#define BOARD_HEIGTH 5
+#define BOARD_WIDTH 10
+#define BOARD_HEIGTH 10
 
 #define ANSI_COLOR_RED     "\x1b[31m"
 #define ANSI_COLOR_GREEN   "\x1b[32m"
