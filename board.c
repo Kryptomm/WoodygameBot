@@ -40,6 +40,57 @@ uint8_t placeTileOnBoard(Tile* tile, uint8_t x, uint8_t y){
     return 1;
 }
 
+//Cleans Rows and Columns based on the last placed tile and their position
+//Returns the number of Columns and Rows cleared.
+uint8_t cleanFullRows(Tile* tile, uint8_t x, uint8_t y) {
+    uint8_t clearedRows = 0;
+    uint8_t rowsToClear = 0;
+    uint8_t columnsToClear = 0;
+
+    //Rows
+    for(uint8_t i = 0; i < tile->height; i++){
+        rowsToClear <<= 1;
+        if(board[y + i] == (uint16_t)(0xFFFF << (16 - BOARD_WIDTH))){
+            rowsToClear |= 1;
+            clearedRows++;
+        }
+    }
+
+    //Columns
+    for(uint8_t i = 0; i < tile->width; i++){
+        columnsToClear <<= 1;
+        uint8_t clearColumn = 1;
+        for(uint8_t j = 0; j < BOARD_HEIGTH; j++){
+            if(getBlockOnBoard(i + x, j) == 0){
+                clearColumn = 0;
+            }
+        }
+        if(clearColumn){
+            columnsToClear |= 1;
+            clearedRows++;
+        }
+    }
+
+    //Clean Rows
+    for(int8_t i = tile->height - 1; i >= 0; i--){
+        if(rowsToClear & 1){
+            board[y + i] = 0;
+        }
+        rowsToClear >>= 1;
+    }
+    
+    //Clean Columns
+    for(int8_t i = tile->width - 1; i >= 0; i--){
+        if(columnsToClear & 1){
+            for(uint8_t j = 0; j < BOARD_HEIGTH; j++){
+                setBlockOnBoard(x + i, j, 0);
+            }
+        }
+        columnsToClear >>= 1;
+    }
+    return clearedRows;
+}
+
 //Gets a Single Block on Board
 uint8_t getBlockOnBoard(uint8_t x, uint8_t y) {
     return (board[y] >> (15 - x)) & 1;

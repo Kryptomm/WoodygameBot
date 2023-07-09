@@ -10,16 +10,30 @@
 int main() {
     initTiles();
 
-    srandom(time(NULL));
-    for(int i = 0; i < 5; i++){
-        Tile randTile;
-        randTile = getRandomTile();
-        placeTileOnBoard(&randTile, (uint8_t) (random() % BOARD_WIDTH), (uint8_t) (random() % BOARD_HEIGTH));
-    }
-    
+    Tile tile1;
+    Tile tile2;
+    Tile tile3;
+    Tile tile4;
+
+    tile1 = fourBlockHorizontal;
+    tile2 = threeBlockHorizontal;
+    tile3 = bottomLeftSmallL;
+    tile4 = threeBlockVertical;
+    placeTileOnBoard(&tile1, 1, 0);
+    placeTileOnBoard(&tile2, 2, 1);
+    placeTileOnBoard(&tile4, 0, 2);
+    placeTileOnBoard(&tile4, 1, 2);
+    placeTileOnBoard(&tile2, 2, 4);
+
+    printf("Reward: %d\n", judgeBoard(board));
+    cleanFullRows(&tile2, 2,4);
+
     printBoard();
 
-    printf("Reward: %d",judgeBoard(board));
+    placeTileOnBoard(&tile3, 0, 0);
+    cleanFullRows(&tile3, 0,0);
+
+    printBoard();
 
     return 0;
 }
