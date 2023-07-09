@@ -6,6 +6,8 @@
 typedef uint16_t RowType;
 typedef uint8_t TileType;
 
+#define MAX_TILE_HEIGHT 5
+
 #define BOARD_WIDTH 5
 #define BOARD_HEIGTH 5
 

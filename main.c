@@ -3,12 +3,11 @@
 
 #include "board.h"
 #include "defines.h"
+#include "tiles.h"
 
 int main() {
-    setBlockOnBoard(0,0,1);
-    setBlockOnBoard(1,0,1);
-    setBlockOnBoard(2,0,1);
-    setBlockOnBoard(3,2,1);
+    printf("%d\n", isPlaceable(&twoBlockHorizontal, 0, 0));
+    placeTileOnBoard(&fiveBlockHorizontal,0,0);
 
     printBoard();
     return 0;
