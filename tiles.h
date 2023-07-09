@@ -14,6 +14,7 @@ typedef struct
 void initTiles(void);
 Tile getRandomTile(void);
 
+extern Tile emptyTile;
 extern Tile oneBlock;
 extern Tile twoBlockVertical;
 extern Tile threeBlockVertical;

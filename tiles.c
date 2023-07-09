@@ -4,6 +4,13 @@
 
 Tile tiles[19];
 
+Tile emptyTile = {
+    .grid = {},
+    .height = 0,
+    .width = 0,
+    .points = 0
+};
+
 Tile oneBlock = {
     .grid = {0b1},
     .height = 1,
@@ -160,8 +167,9 @@ void initTiles() {
 }
 
 Tile getRandomTile() {
-    random(time(NULL));(time(NULL));
+    random(time(NULL));
     size_t numTiles = sizeof(tiles) / sizeof(tiles[0]);
     size_t randomIndex = random() % numTiles;
     return tiles[randomIndex];
 }
+

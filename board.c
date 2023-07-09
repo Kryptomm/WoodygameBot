@@ -6,6 +6,7 @@
 RowType board[BOARD_HEIGTH] = {0};
 
 void printBoard(void){
+    printf("#################\n");
     for(uint8_t y = 0; y < BOARD_HEIGTH; y++){
         printf("%d\t",board[y]);
         for(uint8_t x = 0; x < BOARD_WIDTH; x++){
@@ -103,5 +104,17 @@ void setBlockOnBoard(uint8_t x, uint8_t y, uint8_t num){
     }
     else {
         board[y] &= ~(1 << (15-x));
+    }
+}
+
+void copyBoard(RowType* destination[]) {
+    for (int i = 0; i < BOARD_HEIGTH; i++) {
+        destination[i] = board[i];
+    }
+}
+
+void pasteBoard(RowType* source[]){
+    for (int i = 0; i < BOARD_HEIGTH; i++) {
+        board[i] = source[i];
     }
 }
