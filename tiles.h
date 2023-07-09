@@ -8,6 +8,7 @@ typedef struct
     TileType grid[MAX_TILE_HEIGHT];
     uint8_t height;
     uint8_t width;
+    uint8_t points;
 } Tile;
 
 void initTiles(void);
