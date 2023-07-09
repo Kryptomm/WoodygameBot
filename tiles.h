@@ -13,6 +13,7 @@ typedef struct
 
 void initTiles(void);
 Tile getRandomTile(void);
+void printTile(Tile* tile);
 
 extern Tile emptyTile;
 extern Tile oneBlock;

@@ -167,9 +167,42 @@ void initTiles() {
 }
 
 Tile getRandomTile() {
-    random(time(NULL));
     size_t numTiles = sizeof(tiles) / sizeof(tiles[0]);
-    size_t randomIndex = random() % numTiles;
+    size_t randomIndex;
+    uint8_t isValidTile;
+
+    int excludedList[] = { };
+    size_t numExcluded = sizeof(excludedList) / sizeof(excludedList[0]);
+
+    do {
+        randomIndex = rand() % numTiles;
+
+        // Check if the selected number is in the excluded list
+        isValidTile = 1;
+        for (size_t i = 0; i < numExcluded; i++) {
+            if (randomIndex == excludedList[i]) {
+                isValidTile = 0;
+                break;
+            }
+        }
+    } while (!isValidTile);
+
     return tiles[randomIndex];
 }
 
+
+void printTile(Tile* tile) {
+    printf("\n###\n");
+    for(uint8_t y = 0; y < tile->height; y++){
+        for(uint8_t x = 0; x < tile->width; x++){
+            uint8_t block = (tile->grid[y] >> (tile->width - 1 - x)) & 1;
+            if (block){
+                printf(ANSI_COLOR_GREEN "%d " ANSI_COLOR_RESET, block);
+            }
+            else {
+                printf(ANSI_COLOR_RED "%d " ANSI_COLOR_RESET, block);
+            }
+        }
+        printf("\n");
+    }
+}

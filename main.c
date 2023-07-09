@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdint.h>
 #include <time.h>
+#include <stdlib.h> 
 
 #include "board.h"
 #include "defines.h"
@@ -19,7 +20,10 @@ void playRound() {
         Move move = getBestMove(inv);
 
         if(!move.isPlaceable){
-            printf("VERLOREN: %d", points);
+            printf("VERLOREN: %d\nTiles:\n", points);
+            printTile(&(inv.tiles[0]));
+            printTile(&(inv.tiles[1]));
+            printTile(&(inv.tiles[2]));
             return;
         }
 
@@ -36,6 +40,8 @@ void playRound() {
 
 int main() {
     initTiles();
+
+    srand(time(NULL));
 
     playRound();
 
