@@ -49,10 +49,7 @@ int main() {
 
     srand(time(NULL));
 
-    for(uint8_t i = 0; i < 50; i++){
-        playRound();
-        resetBoard();
-    }
+    playRound();
     printf("\nBEST POINTS: %d\n",bestPoints);
     
     return 0;

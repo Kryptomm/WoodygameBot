@@ -93,6 +93,7 @@ uint8_t cleanFullRows(Tile* tile, uint8_t x, uint8_t y) {
 
 //Gets a Single Block on Board
 uint8_t getBlockOnBoard(uint8_t x, uint8_t y) {
+    if(x >= BOARD_WIDTH || y >= BOARD_HEIGTH) return 2;
     return (board[y] >> (15 - x)) & 1;
 }
 
