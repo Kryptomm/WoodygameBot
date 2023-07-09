@@ -10,6 +10,9 @@ typedef struct
     uint8_t width;
 } Tile;
 
+void initTiles(void);
+Tile getRandomTile(void);
+
 extern Tile oneBlock;
 extern Tile twoBlockVertical;
 extern Tile threeBlockVertical;
@@ -19,5 +22,15 @@ extern Tile twoBlockHorizontal;
 extern Tile threeBlockHorizontal;
 extern Tile fourBlockHorizontal;
 extern Tile fiveBlockHorizontal;
+extern Tile bottomLeftBigL;
+extern Tile bottomRightBigL;
+extern Tile topLeftBigL;
+extern Tile topRightBigL;
+extern Tile smallSquare;
+extern Tile bigSquare;
+extern Tile bottomLeftSmallL;
+extern Tile bottomRightSmallL;
+extern Tile topLeftSmallL;
+extern Tile topRightSmallL;
 
 #endif 

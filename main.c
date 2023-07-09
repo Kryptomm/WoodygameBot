@@ -6,8 +6,12 @@
 #include "tiles.h"
 
 int main() {
-    printf("%d\n", isPlaceable(&twoBlockHorizontal, 0, 0));
-    placeTileOnBoard(&fiveBlockHorizontal,0,0);
+    initTiles();
+
+    Tile randTile;
+    randTile = getRandomTile();
+    
+    placeTileOnBoard(&randTile,1,1);
 
     printBoard();
     return 0;
