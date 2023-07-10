@@ -9,13 +9,11 @@
 #include "reward.h"
 #include "move.h"
 
-uint32_t points;
-uint32_t bestPoints;
+uint64_t points;
+uint64_t bestPoints;
 
 void playRound() {
-    int maxSteps = 1000;
-    int steps = 0;
-    while(1 && steps < maxSteps) {
+    while(1) {
         Inventory inv = getRandomInventory();
 
         Move move = getBestMove(inv);
@@ -40,7 +38,7 @@ void playRound() {
         }
 
         printBoard();
-        steps++;
+        printf("Current Points: %d\n", points);
     }
 }
 
