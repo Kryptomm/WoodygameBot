@@ -2,7 +2,7 @@
 #include <stdint.h>
 #include <time.h>
 
-Tile tiles[19];
+Tile tiles[41];
 
 Tile emptyTile = {
     .grid = {},
@@ -144,6 +144,160 @@ Tile topRightSmallL = {
     .points = 3
 };
 
+Tile upTriangle = {
+    .grid = {0b010, 0b111},
+    .height = 2,
+    .width = 3,
+    .points = 4
+};
+
+Tile downTriangle = {
+    .grid = {0b111, 0b010},
+    .height = 2,
+    .width = 3,
+    .points = 4
+};
+
+Tile leftTriangle = {
+    .grid = {0b01, 0b11, 0b01},
+    .height = 3,
+    .width = 2,
+    .points = 4
+};
+
+Tile rightTriangle = {
+    .grid = {0b10, 0b11, 0b10},
+    .height = 3,
+    .width = 2,
+    .points = 4
+};
+
+Tile normLdown = {
+    .grid = {0b10, 0b10, 0b11},
+    .height = 3,
+    .width = 2,
+    .points = 4
+};
+
+Tile normLup = {
+    .grid = {0b11, 0b01, 0b01},
+    .height = 3,
+    .width = 2,
+    .points = 4
+};
+
+Tile normLleft = {
+    .grid = {0b111, 0b100},
+    .height = 2,
+    .width = 3,
+    .points = 4
+};
+
+Tile normLright = {
+    .grid = {0b001, 0b111},
+    .height = 2,
+    .width = 3,
+    .points = 4
+};
+
+Tile invLdown = {
+    .grid = {0b01, 0b01, 0b11},
+    .height = 3,
+    .width = 2,
+    .points = 4
+};
+
+Tile invLup = {
+    .grid = {0b11, 0b10, 0b10},
+    .height = 3,
+    .width = 2,
+    .points = 4
+};
+
+Tile invLleft = {
+    .grid = {0b100, 0b111},
+    .height = 2,
+    .width = 3,
+    .points = 4
+};
+
+Tile invLright = {
+    .grid = {0b111, 0b001},
+    .height = 2,
+    .width = 3,
+    .points = 4
+};
+
+Tile normSStand = {
+    .grid = {0b011, 0b110},
+    .height = 2,
+    .width = 3,
+    .points = 4
+};
+
+Tile normSSide = {
+    .grid = {0b10, 0b11, 0b01},
+    .height = 3,
+    .width = 2,
+    .points = 4
+};
+
+Tile invSStand = {
+    .grid = {0b110, 0b011},
+    .height = 2,
+    .width = 3,
+    .points = 4
+};
+
+Tile invSSide = {
+    .grid = {0b01, 0b11, 0b10},
+    .height = 3,
+    .width = 2,
+    .points = 4
+};
+
+Tile twoTimesThreeRecStand = {
+    .grid = {0b11, 0b11, 0b11},
+    .height = 3,
+    .width = 2,
+    .points = 6
+};
+
+Tile twoTimesThreeRecSide = {
+    .grid = {0b111, 0b111},
+    .height = 2,
+    .width = 3,
+    .points = 6
+};
+
+Tile bridgeHoleUp = {
+    .grid = {0b101, 0b111},
+    .height = 2,
+    .width = 3,
+    .points = 5
+};
+
+Tile bridgeHoleDown = {
+    .grid = {0b111, 0b101},
+    .height = 2,
+    .width = 3,
+    .points = 5
+};
+
+Tile bridgeHoleLeft = {
+    .grid = {0b11, 0b01, 0b11},
+    .height = 3,
+    .width = 2,
+    .points = 5
+};
+
+Tile bridgeHoleRight = {
+    .grid = {0b11, 0b10, 0b11},
+    .height = 3,
+    .width = 2,
+    .points = 5
+};
+
 void initTiles() {
     tiles[0] = oneBlock;
     tiles[1] = twoBlockVertical;
@@ -164,6 +318,28 @@ void initTiles() {
     tiles[16] = bottomRightSmallL;
     tiles[17] = topLeftSmallL;
     tiles[18] = topRightSmallL;
+    tiles[19] = upTriangle;
+    tiles[20] = downTriangle;
+    tiles[21] = leftTriangle;
+    tiles[22] = rightTriangle;
+    tiles[23] = normLdown;
+    tiles[24] = normLup;
+    tiles[25] = normLleft;
+    tiles[26] = normLright;
+    tiles[27] = invLdown;
+    tiles[28] = invLup;
+    tiles[29] = invLleft;
+    tiles[30] = invLright;
+    tiles[31] = normSStand;
+    tiles[32] = normSSide;
+    tiles[33] = invSStand;
+    tiles[34] = invSSide;
+    tiles[35] = twoTimesThreeRecStand;
+    tiles[36] = twoTimesThreeRecSide;
+    tiles[37] = bridgeHoleUp;
+    tiles[38] = bridgeHoleDown;
+    tiles[39] = bridgeHoleLeft;
+    tiles[40] = bridgeHoleRight;
 }
 
 Tile getRandomTile() {
@@ -190,6 +366,9 @@ Tile getRandomTile() {
     return tiles[randomIndex];
 }
 
+Tile getTile(uint16_t num){
+    return tiles[num];
+}
 
 void printTile(Tile* tile) {
     printf("\n###\n");

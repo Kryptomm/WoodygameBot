@@ -39,6 +39,7 @@ void playRound() {
 
         printBoard();
         printf("Current Points: %d\n", points);
+        printf("BEST POINTS: %d\n", bestPoints);
     }
 }
 
@@ -47,8 +48,8 @@ int main() {
 
     srand(time(NULL));
 
-    playRound();
-    printf("\nBEST POINTS: %d\n",bestPoints);
-    
+    while(1){
+        playRound();
+    }
     return 0;
 }
