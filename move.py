@@ -9,8 +9,8 @@ def moveTileToCoordinates(tile, slot, x, y):
     desiredY = (y + defines.PLACEMENT_HEIGHT_DELTA + tile.height - 1) * defines.BOARD_BOX_HEIGHT + defines.BOARD_TOPLEFT[1] + defines.HALFBLOCKHEIGHT
     desiredX = (x+ int(tile.width / 2)) * defines.BOARD_BOX_WIDTH + defines.BOARD_TOPLEFT[0] + defines.HALFBLOCKWIDTH 
     
-    if tile.width % 2 == 0:
-        desiredX += defines.HALFBLOCKWIDTH
+    if tile.width % 2 == 0: desiredX += defines.HALFBLOCKWIDTH
+    if tile.height % 2 == 0: desiredY += defines.HALFBLOCKHEIGHT
     
     pyautogui.dragTo(desiredX, desiredY, 2,button='left') 
 
@@ -20,4 +20,4 @@ if __name__ == "__main__":
     import tiles
     
     sleep(2)
-    moveTileToCoordinates(tiles.tiles[12], 1, 0, 0)
+    moveTileToCoordinates(tiles.tiles[15], 3, 7, 0)
