@@ -6,15 +6,12 @@ import defines
 import pyautogui
 
 def isBlockInSpace(img, x, y):
-    HALFBLOCKWIDTH = defines.BOARD_BOX_WIDTH / 2
-    HALFBLOCKHEIGHT = defines.BOARD_BOX_HEIGHT / 2
-    
     avgColor = (0,0,0)
     for sub_x in range(-10, 11):
         for sub_y in range(-10 ,11):
             avgColor = tuple(ai + bi for ai, bi in zip(avgColor,
-                                                        img.getpixel((int(x * defines.BOARD_BOX_WIDTH + sub_x + HALFBLOCKWIDTH),
-                                                                    int(y * defines.BOARD_BOX_HEIGHT + sub_y + HALFBLOCKHEIGHT)))))
+                                                        img.getpixel((int(x * defines.BOARD_BOX_WIDTH + sub_x + defines.HALFBLOCKWIDTH),
+                                                                    int(y * defines.BOARD_BOX_HEIGHT + sub_y + defines.HALFBLOCKHEIGHT)))))
     avgColor = tuple(ai / 441 for ai in avgColor) 
     distNotBlock = sqrt((avgColor[0] - defines.NOTPLACED_COLOR[0])**2 + (avgColor[1] - defines.NOTPLACED_COLOR[1])**2 + (avgColor[2] - defines.NOTPLACED_COLOR[2])**2)
     distBlock = sqrt((avgColor[0] - defines.PLACED_COLOR[0])**2 + (avgColor[1] - defines.PLACED_COLOR[1])**2 + (avgColor[2] - defines.PLACED_COLOR[2])**2)
