@@ -1,5 +1,7 @@
 from math import sqrt
 
+from time import sleep
+
 import defines
 import pyautogui
 
@@ -37,6 +39,7 @@ def getBoardFromScreen():
 
 
 if __name__ == "__main__":
+    sleep(2)
     board = getBoardFromScreen()
     for y in range(0, defines.BOARD_HEIGHT):
         for x in range(0, defines.BOARD_WIDTH):
