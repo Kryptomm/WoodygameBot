@@ -1,2 +1,6 @@
-for i in range(35,42):
-    print(f"tiles[{i}] = ;")
+i = 0
+
+for x in range(-10,11):
+    i+=1
+    
+print(i)
