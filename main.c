@@ -55,6 +55,7 @@ void bestMove(int argc, char *argv[]){
     Inventory inv;
     initBestMoveProgram(argc, argv, &inv);
 
+    printBoard();
     //Calc
     Move move = getBestMove(&inv);
 
