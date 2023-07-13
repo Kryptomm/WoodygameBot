@@ -1,9 +1,9 @@
 from math import sqrt
-
 from time import sleep
 
 import defines
 import pyautogui
+import tiles
 
 def isBlockInSpace(img, x, y):
     avgColor = (0,0,0)
@@ -34,13 +34,45 @@ def getBoardFromScreen():
     
     return board
 
+def getSingleTile(topLeft, bottomRight):
+    screenshot = pyautogui.screenshot(region=(topLeft[0], topLeft[1], (bottomRight[0] - topLeft[0]), (bottomRight[1] - topLeft[1])))
+    
+    mid = (screenshot.width / 2, screenshot.width / 2)
+    bestTile = (None, 0)
+    
+    for tile in tiles.tiles:
+        xStart = int(mid[0] - tile.width / 2 * defines.INVENTORY_BOX_WIDTH)
+        yStart = int(mid[1] - tile.height / 2 * defines.INVENTORY_BOX_HEIGHT)
+        froundGrid = [0] * (tile.height)
+        
+        for y in range(0, tile.height):
+            for x in range(0, tile.width):
+                stY = yStart + y * defines.INVENTORY_BOX_HEIGHT
+                stX = xStart + x * defines.INVENTORY_BOX_WIDTH
+                
+                avgColor = (0,0,0)
+                for smallcubeY in range(0, defines.INVENTORY_BOX_HEIGHT):
+                    for smallcubeX in range(0, defines.INVENTORY_BOX_WIDTH):
+                        avgColor = tuple(ai + bi for ai, bi in zip(avgColor, screenshot.getpixel((int(stX + smallcubeX), int(stY + smallcubeY)))))
+                        
+                avgColor = tuple(ai / (defines.INVENTORY_BOX_HEIGHT * defines.INVENTORY_BOX_WIDTH) for ai in avgColor)
+                distNotBlock = sqrt((avgColor[0] - defines.INVENTORY_BOX_COLOR_NOTPLACED[0])**2 + (avgColor[1] - defines.INVENTORY_BOX_COLOR_NOTPLACED[1])**2 + (avgColor[2] - defines.INVENTORY_BOX_COLOR_NOTPLACED[2])**2)
+                distBlock = sqrt((avgColor[0] - defines.INVENTORY_BOX_COLOR_PLACED[0])**2 + (avgColor[1] - defines.INVENTORY_BOX_COLOR_PLACED[1])**2 + (avgColor[2] - defines.INVENTORY_BOX_COLOR_PLACED[2])**2) 
+                
+                froundGrid[y] = froundGrid[y] << 1
+                if distBlock < distNotBlock: froundGrid[y] += 1
+                
+        if tiles.compareTiles(tile.grid, froundGrid) and bestTile[1] < tile.width * tile.height: bestTile = (tile, tile.width * tile.height)
+    return bestTile[0]
+
 def getTiles():
-    return None
+    tile1 = getSingleTile(defines.INVENTORY_SLOT1_TOPLEFT, defines.INVENTORY_SLOT1_BOTTOMRIGHT)
+    tile2 = getSingleTile(defines.INVENTORY_SLOT2_TOPLEFT, defines.INVENTORY_SLOT2_BOTTOMRIGHT)
+    tile3 = getSingleTile(defines.INVENTORY_SLOT3_TOPLEFT, defines.INVENTORY_SLOT3_BOTTOMRIGHT)
+    
+    return [tile1, tile2, tile3]
 
 if __name__ == "__main__":
-    sleep(2)
-    board = getBoardFromScreen()
-    for y in range(0, defines.BOARD_HEIGHT):
-        for x in range(0, defines.BOARD_WIDTH):
-            print(f"{board[y][x]} ", end="")
-        print("")
+    sleep(3)
+    tiles = getTiles()
+    print(tiles)

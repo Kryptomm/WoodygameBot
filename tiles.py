@@ -6,6 +6,10 @@ class Tile:
         self.width = width
         self.points = points
 
+    def __repr__(self):
+        return f"Tile(id={self.id}, grid={self.grid}, height={self.height}, width={self.width}, points={self.points})"
+
+
 tiles = [
     Tile(0, [], 0, 0, 0),                            # emptyTile
     Tile(1, [0b1], 1, 1, 1),                          # oneBlock
@@ -51,5 +55,12 @@ tiles = [
     Tile(41, [0b11, 0b10, 0b11], 3, 2, 5)             # bridgeHoleRight
 ]
 
+def compareTiles(tile1, tile2):
+    if len(tile1) !=len(tile2): return False
+    for y in range(len(tile1)):
+        if tile1[y] != tile2[y]:
+            return False
+    return True
+
 def getTile(num):
-    return tiles(num)
+    return tiles[num]

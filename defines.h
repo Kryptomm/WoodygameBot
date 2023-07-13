@@ -22,7 +22,7 @@ typedef uint16_t RewardType;
 #define FIVE_ATONCE_BONUS 300
 #define SIX_ATONCE_BONUS 500
 
-//OTHER
+//INVENTORY
 #define INVENTORY_SPACE 3
 
 //COLORS
