@@ -44,3 +44,17 @@ void initBestMoveProgram(int argc, char *argv[], Inventory *inv){
         inv->tiles[i] = getTile(stringToInt(argv[i + 2]));
     }
 }
+
+void outputMove(Move move){
+    FILE *file = fopen("outputBestMove", "w"); // Open the file in write mode
+    if (file == NULL) {
+        printf("Failed to open the file.\n");
+        return;
+    }
+    
+    for(uint8_t i = 0; i < INVENTORY_SPACE; i++){
+        fprintf(file, "%d %d %d\n", move.moves[i].tile.id, move.moves[i].x_position, move.moves[i].y_position);
+    }
+    
+    fclose(file);
+}

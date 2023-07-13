@@ -5,6 +5,7 @@
 Tile tiles[41];
 
 Tile emptyTile = {
+    .id = 0,
     .grid = {},
     .height = 0,
     .width = 0,
@@ -12,6 +13,7 @@ Tile emptyTile = {
 };
 
 Tile oneBlock = {
+    .id = 1,
     .grid = {0b1},
     .height = 1,
     .width = 1,
@@ -19,6 +21,7 @@ Tile oneBlock = {
 };
 
 Tile twoBlockVertical = {
+    .id = 2,
     .grid = {0b1,0b1},
     .height = 2,
     .width = 1,
@@ -26,6 +29,7 @@ Tile twoBlockVertical = {
 };
 
 Tile threeBlockVertical = {
+    .id = 3,
     .grid = {0b1,0b1,0b1},
     .height = 3,
     .width = 1,
@@ -33,6 +37,7 @@ Tile threeBlockVertical = {
 };
 
 Tile fourBlockVertical = {
+    .id = 4,
     .grid = {0b1,0b1,0b1,0b1},
     .height = 4,
     .width = 1,
@@ -40,6 +45,7 @@ Tile fourBlockVertical = {
 };
 
 Tile fiveBlockVertical = {
+    .id = 5,
     .grid = {0b1,0b1,0b1,0b1,0b1},
     .height = 5,
     .width = 1,
@@ -47,6 +53,7 @@ Tile fiveBlockVertical = {
 };
 
 Tile twoBlockHorizontal = {
+    .id = 6,
     .grid = {0b11},
     .height = 1,
     .width = 2,
@@ -54,6 +61,7 @@ Tile twoBlockHorizontal = {
 };
 
 Tile threeBlockHorizontal = {
+    .id = 7,
     .grid = {0b111},
     .height = 1,
     .width = 3,
@@ -61,6 +69,7 @@ Tile threeBlockHorizontal = {
 };
 
 Tile fourBlockHorizontal = {
+    .id = 8,
     .grid = {0b1111},
     .height = 1,
     .width = 4,
@@ -68,6 +77,7 @@ Tile fourBlockHorizontal = {
 };
 
 Tile fiveBlockHorizontal = {
+    .id = 9,
     .grid = {0b11111},
     .height = 1,
     .width = 5,
@@ -75,6 +85,7 @@ Tile fiveBlockHorizontal = {
 };
 
 Tile bottomLeftBigL = {
+    .id = 10,
     .grid = {0b100, 0b100, 0b111},
     .height = 3,
     .width = 3,
@@ -82,6 +93,7 @@ Tile bottomLeftBigL = {
 };
 
 Tile bottomRightBigL = {
+    .id = 11,
     .grid = {0b001, 0b001, 0b111},
     .height = 3,
     .width = 3,
@@ -89,6 +101,7 @@ Tile bottomRightBigL = {
 };
 
 Tile topLeftBigL = {
+    .id = 12,
     .grid = {0b111, 0b100, 0b100},
     .height = 3,
     .width = 3,
@@ -96,6 +109,7 @@ Tile topLeftBigL = {
 };
 
 Tile topRightBigL = {
+    .id = 13,
     .grid = {0b111, 0b001, 0b001},
     .height = 3,
     .width = 3,
@@ -103,6 +117,7 @@ Tile topRightBigL = {
 };
 
 Tile smallSquare = {
+    .id = 14,
     .grid = {0b11,0b11},
     .height = 2,
     .width = 2 ,
@@ -110,6 +125,7 @@ Tile smallSquare = {
 };
 
 Tile bigSquare = {
+    .id = 15,
     .grid = {0b111, 0b111, 0b111},
     .height = 3,
     .width = 3,
@@ -117,6 +133,7 @@ Tile bigSquare = {
 };
 
 Tile bottomLeftSmallL = {
+    .id = 16,
     .grid = {0b10, 0b11},
     .height = 2,
     .width = 2,
@@ -124,6 +141,7 @@ Tile bottomLeftSmallL = {
 };
 
 Tile bottomRightSmallL = {
+    .id = 17,
     .grid = {0b01, 0b11},
     .height = 2,
     .width = 2,
@@ -131,6 +149,7 @@ Tile bottomRightSmallL = {
 };
 
 Tile topLeftSmallL = {
+    .id = 18,
     .grid = {0b11, 0b10},
     .height = 2,
     .width = 2,
@@ -138,6 +157,7 @@ Tile topLeftSmallL = {
 };
 
 Tile topRightSmallL = {
+    .id = 19,
     .grid = {0b11, 0b01},
     .height = 2,
     .width = 2,
@@ -145,6 +165,7 @@ Tile topRightSmallL = {
 };
 
 Tile upTriangle = {
+    .id = 20,
     .grid = {0b010, 0b111},
     .height = 2,
     .width = 3,
@@ -152,6 +173,7 @@ Tile upTriangle = {
 };
 
 Tile downTriangle = {
+    .id = 21,
     .grid = {0b111, 0b010},
     .height = 2,
     .width = 3,
@@ -159,6 +181,7 @@ Tile downTriangle = {
 };
 
 Tile leftTriangle = {
+    .id = 22,
     .grid = {0b01, 0b11, 0b01},
     .height = 3,
     .width = 2,
@@ -166,6 +189,7 @@ Tile leftTriangle = {
 };
 
 Tile rightTriangle = {
+    .id = 23,
     .grid = {0b10, 0b11, 0b10},
     .height = 3,
     .width = 2,
@@ -173,6 +197,7 @@ Tile rightTriangle = {
 };
 
 Tile normLdown = {
+    .id = 24,
     .grid = {0b10, 0b10, 0b11},
     .height = 3,
     .width = 2,
@@ -180,6 +205,7 @@ Tile normLdown = {
 };
 
 Tile normLup = {
+    .id = 25,
     .grid = {0b11, 0b01, 0b01},
     .height = 3,
     .width = 2,
@@ -187,6 +213,7 @@ Tile normLup = {
 };
 
 Tile normLleft = {
+    .id = 26,
     .grid = {0b111, 0b100},
     .height = 2,
     .width = 3,
@@ -194,6 +221,7 @@ Tile normLleft = {
 };
 
 Tile normLright = {
+    .id = 27,
     .grid = {0b001, 0b111},
     .height = 2,
     .width = 3,
@@ -201,6 +229,7 @@ Tile normLright = {
 };
 
 Tile invLdown = {
+    .id = 28,
     .grid = {0b01, 0b01, 0b11},
     .height = 3,
     .width = 2,
@@ -208,6 +237,7 @@ Tile invLdown = {
 };
 
 Tile invLup = {
+    .id = 29,
     .grid = {0b11, 0b10, 0b10},
     .height = 3,
     .width = 2,
@@ -215,6 +245,7 @@ Tile invLup = {
 };
 
 Tile invLleft = {
+    .id = 30,
     .grid = {0b100, 0b111},
     .height = 2,
     .width = 3,
@@ -222,6 +253,7 @@ Tile invLleft = {
 };
 
 Tile invLright = {
+    .id = 31,
     .grid = {0b111, 0b001},
     .height = 2,
     .width = 3,
@@ -229,6 +261,7 @@ Tile invLright = {
 };
 
 Tile normSStand = {
+    .id = 32,
     .grid = {0b011, 0b110},
     .height = 2,
     .width = 3,
@@ -236,6 +269,7 @@ Tile normSStand = {
 };
 
 Tile normSSide = {
+    .id = 33,
     .grid = {0b10, 0b11, 0b01},
     .height = 3,
     .width = 2,
@@ -243,6 +277,7 @@ Tile normSSide = {
 };
 
 Tile invSStand = {
+    .id = 34,
     .grid = {0b110, 0b011},
     .height = 2,
     .width = 3,
@@ -250,6 +285,7 @@ Tile invSStand = {
 };
 
 Tile invSSide = {
+    .id = 35,
     .grid = {0b01, 0b11, 0b10},
     .height = 3,
     .width = 2,
@@ -257,6 +293,7 @@ Tile invSSide = {
 };
 
 Tile twoTimesThreeRecStand = {
+    .id = 36,
     .grid = {0b11, 0b11, 0b11},
     .height = 3,
     .width = 2,
@@ -264,6 +301,7 @@ Tile twoTimesThreeRecStand = {
 };
 
 Tile twoTimesThreeRecSide = {
+    .id = 37,
     .grid = {0b111, 0b111},
     .height = 2,
     .width = 3,
@@ -271,6 +309,7 @@ Tile twoTimesThreeRecSide = {
 };
 
 Tile bridgeHoleUp = {
+    .id = 38,
     .grid = {0b101, 0b111},
     .height = 2,
     .width = 3,
@@ -278,6 +317,7 @@ Tile bridgeHoleUp = {
 };
 
 Tile bridgeHoleDown = {
+    .id = 39,
     .grid = {0b111, 0b101},
     .height = 2,
     .width = 3,
@@ -285,6 +325,7 @@ Tile bridgeHoleDown = {
 };
 
 Tile bridgeHoleLeft = {
+    .id = 40,
     .grid = {0b11, 0b01, 0b11},
     .height = 3,
     .width = 2,
@@ -292,6 +333,7 @@ Tile bridgeHoleLeft = {
 };
 
 Tile bridgeHoleRight = {
+    .id = 41,
     .grid = {0b11, 0b10, 0b11},
     .height = 3,
     .width = 2,
@@ -299,47 +341,48 @@ Tile bridgeHoleRight = {
 };
 
 void initTiles() {
-    tiles[0] = oneBlock;
-    tiles[1] = twoBlockVertical;
-    tiles[2] = threeBlockVertical;
-    tiles[3] = fourBlockVertical;
-    tiles[4] = fiveBlockVertical;
-    tiles[5] = twoBlockHorizontal;
-    tiles[6] = threeBlockHorizontal;
-    tiles[7] = fourBlockHorizontal;
-    tiles[8] = fiveBlockHorizontal;
-    tiles[9] = bottomLeftBigL;
-    tiles[10] = bottomRightBigL;
-    tiles[11] = topLeftBigL;
-    tiles[12] = topRightBigL;
-    tiles[13] = smallSquare;
-    tiles[14] = bigSquare;
-    tiles[15] = bottomLeftSmallL;
-    tiles[16] = bottomRightSmallL;
-    tiles[17] = topLeftSmallL;
-    tiles[18] = topRightSmallL;
-    tiles[19] = upTriangle;
-    tiles[20] = downTriangle;
-    tiles[21] = leftTriangle;
-    tiles[22] = rightTriangle;
-    tiles[23] = normLdown;
-    tiles[24] = normLup;
-    tiles[25] = normLleft;
-    tiles[26] = normLright;
-    tiles[27] = invLdown;
-    tiles[28] = invLup;
-    tiles[29] = invLleft;
-    tiles[30] = invLright;
-    tiles[31] = normSStand;
-    tiles[32] = normSSide;
-    tiles[33] = invSStand;
-    tiles[34] = invSSide;
-    tiles[35] = twoTimesThreeRecStand;
-    tiles[36] = twoTimesThreeRecSide;
-    tiles[37] = bridgeHoleUp;
-    tiles[38] = bridgeHoleDown;
-    tiles[39] = bridgeHoleLeft;
-    tiles[40] = bridgeHoleRight;
+    tiles[0] = emptyTile;
+    tiles[1] = oneBlock;
+    tiles[2] = twoBlockVertical;
+    tiles[3] = threeBlockVertical;
+    tiles[4] = fourBlockVertical;
+    tiles[5] = fiveBlockVertical;
+    tiles[6] = twoBlockHorizontal;
+    tiles[7] = threeBlockHorizontal;
+    tiles[8] = fourBlockHorizontal;
+    tiles[9] = fiveBlockHorizontal;
+    tiles[10] = bottomLeftBigL;
+    tiles[11] = bottomRightBigL;
+    tiles[12] = topLeftBigL;
+    tiles[13] = topRightBigL;
+    tiles[14] = smallSquare;
+    tiles[15] = bigSquare;
+    tiles[16] = bottomLeftSmallL;
+    tiles[17] = bottomRightSmallL;
+    tiles[18] = topLeftSmallL;
+    tiles[19] = topRightSmallL;
+    tiles[20] = upTriangle;
+    tiles[21] = downTriangle;
+    tiles[22] = leftTriangle;
+    tiles[23] = rightTriangle;
+    tiles[24] = normLdown;
+    tiles[25] = normLup;
+    tiles[26] = normLleft;
+    tiles[27] = normLright;
+    tiles[28] = invLdown;
+    tiles[29] = invLup;
+    tiles[30] = invLleft;
+    tiles[31] = invLright;
+    tiles[32] = normSStand;
+    tiles[33] = normSSide;
+    tiles[34] = invSStand;
+    tiles[35] = invSSide;
+    tiles[36] = twoTimesThreeRecStand;
+    tiles[37] = twoTimesThreeRecSide;
+    tiles[38] = bridgeHoleUp;
+    tiles[39] = bridgeHoleDown;
+    tiles[40] = bridgeHoleLeft;
+    tiles[41] = bridgeHoleRight;
 }
 
 Tile getRandomTile() {
@@ -347,7 +390,7 @@ Tile getRandomTile() {
     size_t randomIndex;
     uint8_t isValidTile;
 
-    int excludedList[] = { };
+    int excludedList[] = { 0 };
     size_t numExcluded = sizeof(excludedList) / sizeof(excludedList[0]);
 
     do {

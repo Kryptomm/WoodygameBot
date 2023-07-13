@@ -1,3 +1,5 @@
+import subprocess
+
 import defines
 import tiles as til
 
@@ -37,6 +39,12 @@ def getBestMove(board, tiles):
     board = getBoardString(board)
     tiles = getTilesString(tiles)
     
-    print(board, tiles)
+    #Besten Move berechnen
+    command = ["./program", board, tiles.split(" ")[0], tiles.split(" ")[1], tiles.split(" ")[2]]
+    process = subprocess.Popen(command)
+    process.wait()
     
-    return None
+    #Move auslesen
+    with open("outputBestMove", "r") as f:
+        txt = f.read().split("\n")
+        return [txt[0].split(" "), txt[1].split(" "), txt[2].split(" ")]

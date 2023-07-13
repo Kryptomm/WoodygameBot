@@ -17,7 +17,7 @@ void playGame() {
     while(1) {
         Inventory inv = getRandomInventory();
 
-        Move move = getBestMove(inv);
+        Move move = getBestMove(&inv);
 
         if(!move.isPlaceable){
             printf("VERLOREN: %d\nTiles:\n", points);
@@ -56,9 +56,10 @@ void bestMove(int argc, char *argv[]){
     initBestMoveProgram(argc, argv, &inv);
 
     //Calc
-    Move move = getBestMove(inv);
+    Move move = getBestMove(&inv);
 
     //Output
+    outputMove(move);
 }
 
 int main(int argc, char *argv[]) {

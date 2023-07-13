@@ -21,6 +21,6 @@ typedef struct {
 } Inventory;
 
 Inventory getRandomInventory(void);
-Move getBestMove(Inventory inv);
+Move getBestMove(Inventory* inv);
 
 #endif

@@ -6,32 +6,32 @@
 #include "board.h"
 #include "reward.h"
 
-Inventory* getInventoryPermutations(Inventory inv) {
+Inventory* getInventoryPermutations(Inventory* inv) {
     Inventory* perms = malloc(6 * sizeof(Inventory));
 
-    perms[0].tiles[0] = inv.tiles[0];
-    perms[0].tiles[1] = inv.tiles[1];
-    perms[0].tiles[2] = inv.tiles[2];
+    perms[0].tiles[0] = inv->tiles[0];
+    perms[0].tiles[1] = inv->tiles[1];
+    perms[0].tiles[2] = inv->tiles[2];
 
-    perms[1].tiles[0] = inv.tiles[0];
-    perms[1].tiles[1] = inv.tiles[2];
-    perms[1].tiles[2] = inv.tiles[1];
+    perms[1].tiles[0] = inv->tiles[0];
+    perms[1].tiles[1] = inv->tiles[2];
+    perms[1].tiles[2] = inv->tiles[1];
 
-    perms[2].tiles[0] = inv.tiles[1];
-    perms[2].tiles[1] = inv.tiles[0];
-    perms[2].tiles[2] = inv.tiles[2];
+    perms[2].tiles[0] = inv->tiles[1];
+    perms[2].tiles[1] = inv->tiles[0];
+    perms[2].tiles[2] = inv->tiles[2];
 
-    perms[3].tiles[0] = inv.tiles[1];
-    perms[3].tiles[1] = inv.tiles[2];
-    perms[3].tiles[2] = inv.tiles[0];
+    perms[3].tiles[0] = inv->tiles[1];
+    perms[3].tiles[1] = inv->tiles[2];
+    perms[3].tiles[2] = inv->tiles[0];
 
-    perms[4].tiles[0] = inv.tiles[2];
-    perms[4].tiles[1] = inv.tiles[1];
-    perms[4].tiles[2] = inv.tiles[0];
+    perms[4].tiles[0] = inv->tiles[2];
+    perms[4].tiles[1] = inv->tiles[1];
+    perms[4].tiles[2] = inv->tiles[0];
 
-    perms[5].tiles[0] = inv.tiles[2];
-    perms[5].tiles[1] = inv.tiles[0];
-    perms[5].tiles[2] = inv.tiles[1];
+    perms[5].tiles[0] = inv->tiles[2];
+    perms[5].tiles[1] = inv->tiles[0];
+    perms[5].tiles[2] = inv->tiles[1];
 
     return perms;
 }
@@ -43,7 +43,7 @@ Inventory getRandomInventory() {
     return inv;
 }
 
-Move getBestMove(Inventory inv) {
+Move getBestMove(Inventory* inv) {
     Move bestMove = {
         .moves = { NULL, NULL, NULL },
         .isPlaceable = 0

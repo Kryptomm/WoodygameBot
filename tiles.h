@@ -9,6 +9,7 @@ typedef struct
     uint8_t height;
     uint8_t width;
     uint8_t points;
+    uint8_t id;
 } Tile;
 
 void initTiles(void);
