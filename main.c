@@ -8,11 +8,12 @@
 #include "tiles.h"
 #include "reward.h"
 #include "move.h"
+#include "communicator.h"
 
 uint64_t points;
 uint64_t bestPoints;
 
-void playRound() {
+void playGame() {
     while(1) {
         Inventory inv = getRandomInventory();
 
@@ -43,13 +44,27 @@ void playRound() {
     }
 }
 
-int main() {
-    initTiles();
+void simulate(){
+    while(1){
+        playGame();
+    }
+}
 
+void bestMove(int argc, char *argv[]){
+    //Init
+    Inventory inv;
+    initBestMoveProgram(argc, argv, &inv);
+
+    //Calc
+    Move move = getBestMove(inv);
+
+    //Output
+}
+
+int main(int argc, char *argv[]) {
+    initTiles();
     srand(time(NULL));
 
-    while(1){
-        playRound();
-    }
-    return 0;
+    if (IS_SIMULATING) simulate();
+    else bestMove(argc, argv);
 }
