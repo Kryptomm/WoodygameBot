@@ -69,7 +69,6 @@ Tile tiles[] = {
     { .id = 63, .grid = {0b11, 0b11, 0b10}, .height = 3, .width = 2, .points = 5 },  // invsmallSquareWithPenisDown
     { .id = 64, .grid = {0b111, 0b011}, .height = 2, .width = 3, .points = 5 },  // invsmallSquareWithPenisLeft
     { .id = 65, .grid = {0b110, 0b111}, .height = 2, .width = 3, .points = 5 },  // invsmallSquareWithPenisRight
-
     { .id = 66, .grid = {0b0010, 0b1111}, .height = 2, .width = 4, .points = 5}, //FluteUp
     { .id = 67, .grid = {0b1111, 0b0100}, .height = 2, .width = 4, .points = 5}, //FluteDown
     { .id = 68, .grid = {0b01, 0b11, 0b01, 0b01}, .height = 4, .width = 2, .points = 5}, //FluteLeft
@@ -78,11 +77,12 @@ Tile tiles[] = {
     { .id = 71, .grid = {0b1111, 0b0010}, .height = 2, .width = 4, .points = 5}, //invFluteDown
     { .id = 72, .grid = {0b01, 0b01, 0b11, 0b01}, .height = 4, .width = 2, .points = 5}, //invFluteLeft
     { .id = 73, .grid = {0b10, 0b11, 0b10, 0b10}, .height = 4, .width = 2, .points = 5}, //invFluteRight
-
     { .id = 74, .grid = {0b010, 0b111, 0b111}, .height = 3, .width = 3, .points = 5}, //RectangleWithPenisUp
     { .id = 75, .grid = {0b110, 0b111, 0b110}, .height = 3, .width = 3, .points = 5}, //RectangleWithPenisRight
     { .id = 76, .grid = {0b111, 0b111, 0b010}, .height = 3, .width = 3, .points = 5}, //RectangleWithPenisDown
     { .id = 77, .grid = {0b011, 0b111, 0b011}, .height = 3, .width = 3, .points = 5}, //RectangleWithPenisLeft
+    { .id = 78, .grid = {0b11, 0b11, 0b11, 0b11}, .height = 4, .width = 2, .points = 8}, //twoTimesFourRectStand
+    { .id = 79, .grid = {0b1111, 0b1111}, .height = 2, .width = 4, .points = 8}, //twoTimesFourRectSide
 };
 
 
