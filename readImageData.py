@@ -38,7 +38,7 @@ def getSingleTile(topLeft, bottomRight):
     screenshot = pyautogui.screenshot(region=(topLeft[0], topLeft[1], (bottomRight[0] - topLeft[0]), (bottomRight[1] - topLeft[1])))
     
     mid = (screenshot.width / 2, screenshot.width / 2)
-    bestTile = (None, 0)
+    bestTile = [tiles.getTile(0), 0]
     
     for tile in tiles.tiles:
         xStart = int(mid[0] - tile.width / 2 * defines.INVENTORY_BOX_WIDTH)
@@ -60,9 +60,10 @@ def getSingleTile(topLeft, bottomRight):
                 distBlock = sqrt((avgColor[0] - defines.INVENTORY_BOX_COLOR_PLACED[0])**2 + (avgColor[1] - defines.INVENTORY_BOX_COLOR_PLACED[1])**2 + (avgColor[2] - defines.INVENTORY_BOX_COLOR_PLACED[2])**2) 
                 
                 froundGrid[y] = froundGrid[y] << 1
-                if distBlock < distNotBlock: froundGrid[y] += 1
-                
-        if tiles.compareTiles(tile.grid, froundGrid) and bestTile[1] < tile.width * tile.height: bestTile = (tile, tile.width * tile.height)
+                if distBlock < distNotBlock / 3: froundGrid[y] += 1
+        
+        if tiles.compareTiles(tile.grid, froundGrid) and (bestTile[1] < tile.width or bestTile[1] < tile.height):
+            bestTile = [tile, min(tile.width, tile.height)]
     return bestTile[0]
 
 def getTiles():
@@ -73,6 +74,6 @@ def getTiles():
     return [tile1, tile2, tile3]
 
 if __name__ == "__main__":
-    sleep(3)
+    sleep(2)
     tiles = getTiles()
     print(tiles)

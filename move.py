@@ -14,8 +14,8 @@ def moveTileToCoordinates(tile, slot, x, y):
     if tile.width % 2 == 1: desiredX += defines.HALFBLOCKWIDTH
     
     pyautogui.mouseDown(button='left')
-    pyautogui.moveTo(desiredX, desiredY, 1) 
-    sleep(0.25)
+    pyautogui.moveTo(desiredX, desiredY, defines.MOVETIME) 
+    sleep(defines.MOVETIMEWAIT)
     pyautogui.mouseUp(button='left')
 
 if __name__ == "__main__":

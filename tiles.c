@@ -340,6 +340,14 @@ Tile bridgeHoleRight = {
     .points = 5
 };
 
+Tile longLUp = {
+    .id = 42,
+    .grid = {0b10, 0b10, 0b10, 0b11},
+    .height = 4,
+    .width = 2,
+    .points = 5
+};
+
 void initTiles() {
     tiles[0] = emptyTile;
     tiles[1] = oneBlock;

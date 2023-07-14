@@ -2,6 +2,7 @@ import readImageData as rid
 import communicator as com
 import tiles as t
 import move
+import defines
 
 from time import sleep
 
@@ -22,8 +23,10 @@ def main():
                     usedItems.append(i + 1)
                     break
             
-            move.moveTileToCoordinates(t.getTile(int(m[0])), invSlot, int(m[1]), int(m[2]))
-        sleep(2)
+            tile = t.getTile(int(m[0]))
+            print(f"{tile} to {int(m[1])},{int(m[2])}")
+            move.moveTileToCoordinates(tile, invSlot, int(m[1]), int(m[2]))
+        sleep(defines.TIME_AFTER_TURN)
 
 if __name__ == "__main__":
     sleep(3)
