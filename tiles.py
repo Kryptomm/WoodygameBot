@@ -94,7 +94,15 @@ tiles = [
     Tile(80, "UFormUp", [0b101, 0b101, 0b111], 3, 3, 7),
     Tile(81, "UFormDown", [0b111, 0b101, 0b101], 3, 3, 7),
     Tile(82, "UFormLeft", [0b111, 0b001, 0b111], 3, 3, 7),
-    Tile(83, "UFormRight", [0b111, 0b100, 0b111], 3, 3, 7)
+    Tile(83, "UFormRight", [0b111, 0b100, 0b111], 3, 3, 7),
+    Tile(84, "longZSmallBottom", [0b10, 0b10, 0b10, 0b11, 0b01], 5, 2, 6),
+    Tile(85, "longZSmallUp", [0b10, 0b11, 0b01, 0b01, 0b01], 5, 2, 6),
+    Tile(86, "longZSmallRight", [0b00011, 0b11110], 2, 5, 6),
+    Tile(87, "longZSmallLeft", [0b01111, 0b11000], 2, 5, 6),
+    Tile(88, "invlongZSmallBottom", [0b01, 0b01, 0b01, 0b11, 0b10], 5, 2, 6),
+    Tile(89, "invlongZSmallUp", [0b01, 0b11, 0b10, 0b10, 0b10], 5, 2, 6),
+    Tile(90, "invlongZSmallRight", [0b11110, 0b00011], 2, 5, 6),
+    Tile(91, "invlongZSmallLeft", [0b11000, 0b01111], 2, 5, 6)
 ]
 
 def compareTiles(tile1, tile2):

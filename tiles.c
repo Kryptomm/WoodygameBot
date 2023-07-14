@@ -91,6 +91,14 @@ Tile tiles[] = {
     { .id = 81, .grid = {0b111, 0b101, 0b101}, .height = 3, .width = 3, .points = 7}, // UFormDown
     { .id = 82, .grid = {0b111, 0b001, 0b111}, .height = 3, .width = 3, .points = 7}, // UFormLeft
     { .id = 83, .grid = {0b111, 0b100, 0b111}, .height = 3, .width = 3, .points = 7}, // UFormRight
+    { .id = 84, .grid = {0b10, 0b10, 0b10, 0b11, 0b01}, .height = 5, .width = 2, .points = 6}, // longZSmallBottom
+    { .id = 85, .grid = {0b10, 0b11, 0b01, 0b01, 0b01}, .height = 5, .width = 2, .points = 6}, // longZSmallUp
+    { .id = 86, .grid = {0b00011, 0b11110}, .height = 2, .width = 5, .points = 6}, // longZSmallRight
+    { .id = 87, .grid = {0b01111, 0b11000}, .height = 2, .width = 5, .points = 6}, // longZSmallLeft
+    { .id = 88, .grid = {0b01, 0b01, 0b01, 0b11, 0b10}, .height = 5, .width = 2, .points = 6}, // invlongZSmallBottom
+    { .id = 89, .grid = {0b01, 0b11, 0b10, 0b10, 0b10}, .height = 5, .width = 2, .points = 6}, // invlongZSmallUp
+    { .id = 90, .grid = {0b11110, 0b00011}, .height = 2, .width = 5, .points = 6}, // invlongZSmallRight
+    { .id = 91, .grid = {0b11000, 0b01111}, .height = 2, .width = 5, .points = 6}, // invlongZSmallLeft
 };
 
 
