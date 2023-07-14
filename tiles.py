@@ -10,7 +10,6 @@ class Tile:
     def __repr__(self):
         return f"Tile(id={self.id}, name='{self.name}', grid={self.grid}, height={self.height}, width={self.width}, points={self.points})"
 
-
 tiles = [
     Tile(0, "emptyTile", [], 0, 0, 0),                            # emptyTile
     Tile(1, "oneBlock", [0b1], 1, 1, 1),                          # oneBlock
@@ -53,8 +52,17 @@ tiles = [
     Tile(38, "bridgeHoleUp", [0b101, 0b111], 2, 3, 5),                # bridgeHoleUp
     Tile(39, "bridgeHoleDown", [0b111, 0b101], 2, 3, 5),              # bridgeHoleDown
     Tile(40, "bridgeHoleLeft", [0b11, 0b01, 0b11], 3, 2, 5),          # bridgeHoleLeft
-    Tile(41, "bridgeHoleRight", [0b11, 0b10, 0b11], 3, 2, 5)          # bridgeHoleRight
+    Tile(41, "bridgeHoleRight", [0b11, 0b10, 0b11], 3, 2, 5),         # bridgeHoleRight
+    Tile(42, "longLUp", [0b10, 0b10, 0b10, 0b11], 4, 2, 5),           # longLUp
+    Tile(43, "longLDown", [0b11, 0b01, 0b01, 0b01], 4, 2, 5),         # longLDown
+    Tile(44, "longLRight", [0b0001, 0b1111], 2, 4, 5),                # longLRight
+    Tile(45, "longLLeft", [0b1111, 0b1000], 2, 4, 5),                 # longLLeft
+    Tile(46, "invlongLUp", [0b01, 0b01, 0b01, 0b11], 4, 2, 5),        # invlongLUp
+    Tile(47, "invlongLDown", [0b11, 0b10, 0b10, 0b10], 4, 2, 5),      # invlongLDown
+    Tile(48, "invlongLRight", [0b1111, 0b0001], 2, 4, 5),             # invlongLRight
+    Tile(49, "invlongLLeft", [0b1000, 0b1111], 2, 4, 5)               # invlongLLeft
 ]
+
 
 
 def compareTiles(tile1, tile2):

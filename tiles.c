@@ -2,7 +2,7 @@
 #include <stdint.h>
 #include <time.h>
 
-Tile tiles[41];
+Tile tiles[54];
 
 Tile emptyTile = {
     .id = 0,
@@ -404,6 +404,38 @@ Tile invlongLLeft = {
     .points = 5
 };
 
+Tile TformUp = {
+    .id = 50,
+    .grid = {0b010, 0b010, 0b111},
+    .height = 3,
+    .width = 3,
+    .points = 5
+};
+
+Tile TformDown = {
+    .id = 51,
+    .grid = {0b111, 0b010, 0b010},
+    .height = 3,
+    .width = 3,
+    .points = 5
+};
+
+Tile TformLeft = {
+    .id = 52,
+    .grid = {0b001, 0b111, 0b001},
+    .height = 3,
+    .width = 3,
+    .points = 5
+};
+
+Tile TformRight = {
+    .id = 53,
+    .grid = {0b100, 0b111, 0b100},
+    .height = 3,
+    .width = 3,
+    .points = 5
+};
+
 
 void initTiles() {
     tiles[0] = emptyTile;
@@ -456,6 +488,10 @@ void initTiles() {
     tiles[47] = invlongLDown;
     tiles[48] = invlongLRight;
     tiles[49] = invlongLLeft;
+    tiles[50] = TformUp;
+    tiles[51] = TformDown;
+    tiles[52] = TformLeft;
+    tiles[53] = TformRight;
 }
 
 Tile getRandomTile() {
