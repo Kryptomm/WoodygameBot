@@ -64,7 +64,7 @@ Tile tiles[] = {
     { .id = 58, .grid = {0b10, 0b11, 0b11}, .height = 3, .width = 2, .points = 5 },  // smallSquareWithPenisUp
     { .id = 59, .grid = {0b11, 0b11, 0b01}, .height = 3, .width = 2, .points = 5 },  // smallSquareWithPenisDown
     { .id = 60, .grid = {0b011, 0b111}, .height = 2, .width = 3, .points = 5 },  // smallSquareWithPenisLeft
-    { .id = 61, .grid = {0b111, 0b011}, .height = 2, .width = 3, .points = 5 },  // smallSquareWithPenisRight
+    { .id = 61, .grid = {0b111, 0b110}, .height = 2, .width = 3, .points = 5 },  // smallSquareWithPenisRight
     { .id = 62, .grid = {0b01, 0b11, 0b11}, .height = 3, .width = 2, .points = 5 },  // invsmallSquareWithPenisUp
     { .id = 63, .grid = {0b11, 0b11, 0b10}, .height = 3, .width = 2, .points = 5 },  // invsmallSquareWithPenisDown
     { .id = 64, .grid = {0b111, 0b011}, .height = 2, .width = 3, .points = 5 },  // invsmallSquareWithPenisLeft
