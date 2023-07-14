@@ -348,6 +348,63 @@ Tile longLUp = {
     .points = 5
 };
 
+Tile longLDown = {
+    .id = 43,
+    .grid = {0b11, 0b01, 0b01, 0b01},
+    .height = 4,
+    .width = 2,
+    .points = 5
+};
+
+Tile longLRight = {
+    .id = 44,
+    .grid = {0b0001, 0b1111},
+    .height = 2,
+    .width = 4,
+    .points = 5
+};
+
+Tile longLLeft = {
+    .id = 45,
+    .grid = {0b1111, 0b1000},
+    .height = 2,
+    .width = 4,
+    .points = 5
+};
+
+Tile invlongLUp = {
+    .id = 46,
+    .grid = {0b01, 0b01, 0b01, 0b11},
+    .height = 4,
+    .width = 2,
+    .points = 5
+};
+
+Tile invlongLDown = {
+    .id = 47,
+    .grid = {0b11, 0b10, 0b10, 0b10},
+    .height = 4,
+    .width = 2,
+    .points = 5
+};
+
+Tile invlongLRight = {
+    .id = 48,
+    .grid = {0b1111, 0b0001},
+    .height = 2,
+    .width = 4,
+    .points = 5
+};
+
+Tile invlongLLeft = {
+    .id = 49,
+    .grid = {0b1000, 0b1111},
+    .height = 2,
+    .width = 4,
+    .points = 5
+};
+
+
 void initTiles() {
     tiles[0] = emptyTile;
     tiles[1] = oneBlock;
@@ -391,6 +448,14 @@ void initTiles() {
     tiles[39] = bridgeHoleDown;
     tiles[40] = bridgeHoleLeft;
     tiles[41] = bridgeHoleRight;
+    tiles[42] = longLUp;
+    tiles[43] = longLDown;
+    tiles[44] = longLRight;
+    tiles[45] = longLLeft;
+    tiles[46] = invlongLUp;
+    tiles[47] = invlongLDown;
+    tiles[48] = invlongLRight;
+    tiles[49] = invlongLLeft;
 }
 
 Tile getRandomTile() {
