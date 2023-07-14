@@ -1,6 +1,10 @@
-#include "tiles.h"
+#include <stdio.h>
 #include <stdint.h>
+#include <stdlib.h>
 #include <time.h>
+
+
+#include "tiles.h"
 
 Tile tiles[] = {
     { .id = 0, .grid = {}, .height = 0, .width = 0, .points = 0 },  // emptyTile
@@ -92,7 +96,7 @@ Tile getRandomTile() {
     size_t randomIndex;
     uint8_t isValidTile;
 
-    int excludedList[] = { 0 };
+    uint8_t excludedList[] = { 0 };
     size_t numExcluded = sizeof(excludedList) / sizeof(excludedList[0]);
 
     do {
