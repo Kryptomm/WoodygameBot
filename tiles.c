@@ -87,6 +87,10 @@ Tile tiles[] = {
     { .id = 77, .grid = {0b011, 0b111, 0b011}, .height = 3, .width = 3, .points = 5}, //RectangleWithPenisLeft
     { .id = 78, .grid = {0b11, 0b11, 0b11, 0b11}, .height = 4, .width = 2, .points = 8}, //twoTimesFourRectStand
     { .id = 79, .grid = {0b1111, 0b1111}, .height = 2, .width = 4, .points = 8}, //twoTimesFourRectSide
+    { .id = 80, .grid = {0b101, 0b101, 0b111}, .height = 3, .width = 3, .points = 7}, // UFormUp
+    { .id = 81, .grid = {0b111, 0b101, 0b101}, .height = 3, .width = 3, .points = 7}, // UFormDown
+    { .id = 82, .grid = {0b111, 0b001, 0b111}, .height = 3, .width = 3, .points = 7}, // UFormLeft
+    { .id = 83, .grid = {0b111, 0b100, 0b111}, .height = 3, .width = 3, .points = 7}, // UFormRight
 };
 
 

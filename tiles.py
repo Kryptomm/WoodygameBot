@@ -90,7 +90,11 @@ tiles = [
     Tile(76, "RectangleWithPenisDown", [0b111, 0b111, 0b010], 3, 3, 5),
     Tile(77, "RectangleWithPenisLeft", [0b011, 0b111, 0b011], 3, 3, 5),
     Tile(78, "twoTimesFourRectStand", [0b11, 0b11, 0b11, 0b11], 4, 2, 8),
-    Tile(79, "twoTimesFourRectSide", [0b1111, 0b1111], 2, 4, 8)
+    Tile(79, "twoTimesFourRectSide", [0b1111, 0b1111], 2, 4, 8),
+    Tile(80, "UFormUp", [0b101, 0b101, 0b111], 3, 3, 7),
+    Tile(81, "UFormDown", [0b111, 0b101, 0b101], 3, 3, 7),
+    Tile(82, "UFormLeft", [0b111, 0b001, 0b111], 3, 3, 7),
+    Tile(83, "UFormRight", [0b111, 0b100, 0b111], 3, 3, 7)
 ]
 
 def compareTiles(tile1, tile2):
