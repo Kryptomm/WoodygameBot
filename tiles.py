@@ -76,7 +76,19 @@ tiles = [
     Tile(62, "invsmallSquareWithPenisUp", [0b01, 0b11, 0b11], 3, 2, 5),
     Tile(63, "invsmallSquareWithPenisDown", [0b11, 0b11, 0b10], 3, 2, 5),
     Tile(64, "invsmallSquareWithPenisLeft", [0b111, 0b011], 2, 3, 5),
-    Tile(65, "invsmallSquareWithPenisRight", [0b110, 0b111], 2, 3, 5)
+    Tile(65, "invsmallSquareWithPenisRight", [0b110, 0b111], 2, 3, 5),
+    Tile(66, "FluteUp", [0b0010, 0b1111], 2, 4, 5),
+    Tile(67, "FluteDown", [0b1111, 0b0100], 2, 4, 5),
+    Tile(68, "FluteLeft", [0b01, 0b11, 0b01, 0b01], 4, 2, 5),
+    Tile(69, "FluteRight", [0b10, 0b10, 0b11, 0b10], 4, 2, 5),
+    Tile(70, "invFluteUp", [0b0100, 0b1111], 2, 4, 5),
+    Tile(71, "invFluteDown", [0b1111, 0b0010], 2, 4, 5),
+    Tile(72, "invFluteLeft", [0b01, 0b01, 0b11, 0b01], 4, 2, 5),
+    Tile(73, "invFluteRight", [0b10, 0b11, 0b10, 0b10], 4, 2, 5),
+    Tile(74, "RectangleWithPenisUp", [0b010, 0b111, 0b111], 3, 3, 5),
+    Tile(75, "RectangleWithPenisRight", [0b110, 0b111, 0b110], 3, 3, 5),
+    Tile(76, "RectangleWithPenisDown", [0b111, 0b111, 0b010], 3, 3, 5),
+    Tile(77, "RectangleWithPenisLeft", [0b011, 0b111, 0b011], 3, 3, 5)
 ]
 
 def compareTiles(tile1, tile2):
