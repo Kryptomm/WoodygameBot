@@ -64,7 +64,6 @@ void bestMove(int argc, char *argv[]){
 }
 
 int main(int argc, char *argv[]) {
-    initTiles();
     srand(time(NULL));
 
     if (IS_SIMULATING) simulate();

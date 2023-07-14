@@ -60,10 +60,12 @@ tiles = [
     Tile(46, "invlongLUp", [0b01, 0b01, 0b01, 0b11], 4, 2, 5),        # invlongLUp
     Tile(47, "invlongLDown", [0b11, 0b10, 0b10, 0b10], 4, 2, 5),      # invlongLDown
     Tile(48, "invlongLRight", [0b1111, 0b0001], 2, 4, 5),             # invlongLRight
-    Tile(49, "invlongLLeft", [0b1000, 0b1111], 2, 4, 5)               # invlongLLeft
+    Tile(49, "invlongLLeft", [0b1000, 0b1111], 2, 4, 5),              # invlongLLeft
+    Tile(50, "TformUp", [0b010, 0b010, 0b111], 3, 3, 5),             # TformUp
+    Tile(51, "TformDown", [0b111, 0b010, 0b010], 3, 3, 5),           # TformDown
+    Tile(52, "TformLeft", [0b001, 0b111, 0b001], 3, 3, 5),           # TformLeft
+    Tile(53, "TformRight", [0b100, 0b111, 0b100], 3, 3, 5)           # TformRight
 ]
-
-
 
 def compareTiles(tile1, tile2):
     if len(tile1) !=len(tile2): return False
@@ -74,3 +76,7 @@ def compareTiles(tile1, tile2):
 
 def getTile(num):
     return tiles[num]
+
+if __name__ == "__main__":
+    for t in tiles:
+        if compareTiles(t.grid, [0b110, 0b011]): print(t)
