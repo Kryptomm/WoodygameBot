@@ -95,14 +95,21 @@ tiles = [
     Tile(81, "UFormDown", [0b111, 0b101, 0b101], 3, 3, 7),
     Tile(82, "UFormLeft", [0b111, 0b001, 0b111], 3, 3, 7),
     Tile(83, "UFormRight", [0b111, 0b100, 0b111], 3, 3, 7),
-    Tile(84, "longZSmallBottom", [0b10, 0b10, 0b10, 0b11, 0b01], 5, 2, 6),
-    Tile(85, "longZSmallUp", [0b10, 0b11, 0b01, 0b01, 0b01], 5, 2, 6),
-    Tile(86, "longZSmallRight", [0b00011, 0b11110], 2, 5, 6),
-    Tile(87, "longZSmallLeft", [0b01111, 0b11000], 2, 5, 6),
-    Tile(88, "invlongZSmallBottom", [0b01, 0b01, 0b01, 0b11, 0b10], 5, 2, 6),
-    Tile(89, "invlongZSmallUp", [0b01, 0b11, 0b10, 0b10, 0b10], 5, 2, 6),
-    Tile(90, "invlongZSmallRight", [0b11110, 0b00011], 2, 5, 6),
-    Tile(91, "invlongZSmallLeft", [0b11000, 0b01111], 2, 5, 6)
+    Tile(84, "longZSmallBottom", [0b10, 0b10, 0b11, 0b01], 4, 2, 5),
+    Tile(85, "longZSmallUp", [0b10, 0b11, 0b01, 0b01], 4, 2, 5),
+    Tile(86, "longZSmallRight", [0b0011, 0b1110], 2, 4, 5),
+    Tile(87, "longZSmallLeft", [0b0111, 0b1100], 2, 4, 5),
+    Tile(88, "invlongZSmallBottom", [0b01, 0b01, 0b11, 0b10], 4, 2, 5),
+    Tile(89, "invlongZSmallUp", [0b01, 0b11, 0b10, 0b10], 4, 2, 5),
+    Tile(90, "invlongZSmallRight", [0b1110, 0b0011], 2, 4, 5),
+    Tile(91, "invlongZSmallLeft", [0b1100, 0b0111], 2, 4, 5),
+    Tile(92, "triangleWithHoleDown", [0b010, 0b101], 2, 3, 3),
+    Tile(93, "triangleWithHoleUp", [0b101, 0b010], 2, 3, 3),
+    Tile(94, "triangleWithHoleLeft", [0b10, 0b01, 0b10], 3, 2, 3),
+    Tile(95, "triangleWithHoleRight", [0b01, 0b10, 0b01], 3, 2, 3),
+    Tile(96, "twoblockDiagonalLeft", [0b10, 0b01], 2, 2, 2),
+    Tile(97, "twoblockDiagonalRight", [0b01, 0b10], 2, 2, 2)
+    
 ]
 
 def compareTiles(tile1, tile2):

@@ -91,14 +91,20 @@ Tile tiles[] = {
     { .id = 81, .grid = {0b111, 0b101, 0b101}, .height = 3, .width = 3, .points = 7}, // UFormDown
     { .id = 82, .grid = {0b111, 0b001, 0b111}, .height = 3, .width = 3, .points = 7}, // UFormLeft
     { .id = 83, .grid = {0b111, 0b100, 0b111}, .height = 3, .width = 3, .points = 7}, // UFormRight
-    { .id = 84, .grid = {0b10, 0b10, 0b10, 0b11, 0b01}, .height = 5, .width = 2, .points = 6}, // longZSmallBottom
-    { .id = 85, .grid = {0b10, 0b11, 0b01, 0b01, 0b01}, .height = 5, .width = 2, .points = 6}, // longZSmallUp
-    { .id = 86, .grid = {0b00011, 0b11110}, .height = 2, .width = 5, .points = 6}, // longZSmallRight
-    { .id = 87, .grid = {0b01111, 0b11000}, .height = 2, .width = 5, .points = 6}, // longZSmallLeft
-    { .id = 88, .grid = {0b01, 0b01, 0b01, 0b11, 0b10}, .height = 5, .width = 2, .points = 6}, // invlongZSmallBottom
-    { .id = 89, .grid = {0b01, 0b11, 0b10, 0b10, 0b10}, .height = 5, .width = 2, .points = 6}, // invlongZSmallUp
-    { .id = 90, .grid = {0b11110, 0b00011}, .height = 2, .width = 5, .points = 6}, // invlongZSmallRight
-    { .id = 91, .grid = {0b11000, 0b01111}, .height = 2, .width = 5, .points = 6}, // invlongZSmallLeft
+    { .id = 84, .grid = {0b10, 0b10, 0b11, 0b01}, .height = 4, .width = 2, .points = 5}, // longZSmallBottom
+    { .id = 85, .grid = {0b10, 0b11, 0b01, 0b01}, .height = 4, .width = 2, .points = 5}, // longZSmallUp
+    { .id = 86, .grid = {0b0011, 0b1110}, .height = 2, .width = 4, .points = 5}, // longZSmallRight
+    { .id = 87, .grid = {0b0111, 0b1100}, .height = 2, .width = 4, .points = 5}, // longZSmallLeft
+    { .id = 88, .grid = {0b01, 0b01, 0b11, 0b10}, .height = 4, .width = 2, .points = 5}, // invlongZSmallBottom
+    { .id = 89, .grid = {0b01, 0b11, 0b10, 0b10}, .height = 4, .width = 2, .points = 5}, // invlongZSmallUp
+    { .id = 90, .grid = {0b1110, 0b0011}, .height = 2, .width = 4, .points = 5}, // invlongZSmallRight
+    { .id = 91, .grid = {0b1100, 0b0111}, .height = 2, .width = 4, .points = 5}, // invlongZSmallLeft
+    { .id = 92, .grid = {0b010, 0b101}, .height = 2, .width = 3, .points = 3}, // triangleWithHoleDown
+    { .id = 93, .grid = {0b101, 0b010}, .height = 2, .width = 3, .points = 3}, // triangleWithHoleUp
+    { .id = 94, .grid = {0b10, 0b01, 0b10}, .height = 3, .width = 2, .points = 3}, // triangleWithHoleLeft
+    { .id = 95, .grid = {0b01, 0b10, 0b01}, .height = 3, .width = 2, .points = 3}, // triangleWithHoleRight
+    { .id = 96, .grid = {0b10, 0b01}, .height = 2, .width = 2, .points = 2}, // twoblockDiagonalLeft
+    { .id = 97, .grid = {0b01, 0b10}, .height = 2, .width = 2, .points = 2}, // twoblockDiagonalRight
 };
 
 

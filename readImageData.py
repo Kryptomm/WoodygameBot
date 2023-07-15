@@ -75,5 +75,5 @@ def getTiles():
 
 if __name__ == "__main__":
     sleep(2)
-    tiles = getTiles()
+    tiles = getSingleTile(defines.INVENTORY_SLOT2_TOPLEFT, defines.INVENTORY_SLOT2_BOTTOMRIGHT)
     print(tiles)
