@@ -10,12 +10,13 @@
 #include "move.h"
 #include "communicator.h"
 
-uint16_t roundsPlayed = 0;
-long pointsTotal = 0;
-long points = 0;
-long bestPoints = 0;
+int roundsPlayed = 0;
+int pointsTotal = 0;
+int points = 0;
+int bestPoints = 0;
 
 void playGame() {
+    resetBoard();
     while(1) {
         Inventory inv = getRandomInventory();
 
@@ -30,8 +31,9 @@ void playGame() {
             if(points > bestPoints){
                 bestPoints = points;
             }
+            pointsTotal += points;
             points = 0;
-            roundsPlayed = roundsPlayed + 1;
+            roundsPlayed++;
             return;
         }
 
@@ -49,7 +51,8 @@ void playGame() {
 void simulate(){
     while(roundsPlayed < MAX_ROUNDS){
         playGame();
-        printf("AVERAGE: %d\n", pointsTotal / roundsPlayed);
+        int avg = pointsTotal / roundsPlayed;
+        printf("AVERAGE: %d TOTAL: %d PLAYED: %d BEST: %d", avg, pointsTotal, roundsPlayed, bestPoints);
     }
 }
 
