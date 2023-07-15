@@ -5,10 +5,11 @@
 
 typedef uint16_t RowType;
 typedef uint8_t TileType;
-typedef uint16_t RewardType;
+typedef int RewardType;
 
 //BEHAVIOUR
-#define IS_SIMULATING 0
+#define IS_SIMULATING 1
+#define MAX_ROUNDS 1000
 
 //TILES
 #define MAX_TILE_HEIGHT 5
