@@ -76,9 +76,9 @@ RewardType judgeBoard(RowType* board){
     RewardType reward = 0;
 
     reward += 10 * freeSpaceReward(board);
-    reward += 1 * edgesReward(board);
+    reward += 5 * edgesReward(board);
     //reward += 1 * singleBlockObs(board);
-    reward += 1 * blocksFitting(board);
+    //reward += 0 * blocksFitting(board);
 
     return reward;
 }

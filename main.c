@@ -46,7 +46,7 @@ void playGame() {
         }
 
         printBoard(board);
-        printf("Current Points: %d Best Points: %d, Round: %d\n", points, bestPoints, roundsPlayed);
+        printf("Board Points: %d Current Points: %d Best Points: %d, Round: %d\n", move.points ,points, bestPoints, roundsPlayed);
     }
 }
 

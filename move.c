@@ -49,7 +49,7 @@ void recBestMove(Inventory* inv, RowType* board, uint8_t layer, Move* bestMove, 
         RewardType boardScore = judgeBoard(board);
         if(boardScore > bestMove->points) {
             bestMove->isPlaceable = 1;
-            bestMove->points = currentMove->points;
+            bestMove->points = boardScore;
             for (int i = 0; i < INVENTORY_SPACE; i++) {
                 bestMove->moves[i] = currentMove->moves[i];
             }
@@ -66,7 +66,7 @@ void recBestMove(Inventory* inv, RowType* board, uint8_t layer, Move* bestMove, 
         copyBoard(copiedBoardLayer, board);
         Tile tile = inv->tiles[(INVENTORY_SPACE - layer)];
         if (!placeTileOnBoard(&tile, x, y, copiedBoardLayer)) continue;
-        cleanFullRows(&tile, x, y, board);
+        cleanFullRows(&tile, x, y, copiedBoardLayer);
 
         SingleMove move = {.tile = tile, .x_position = x, .y_position = y};
         currentMove->moves[(INVENTORY_SPACE - layer)] = move;
