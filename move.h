@@ -14,6 +14,7 @@ typedef struct {
 typedef struct {
     SingleMove moves[INVENTORY_SPACE];
     uint8_t isPlaceable;
+    RewardType points;
 } Move;
 
 typedef struct {
@@ -21,6 +22,6 @@ typedef struct {
 } Inventory;
 
 Inventory getRandomInventory(void);
-Move getBestMove(Inventory* inv);
+Move getBestMove(Inventory* inv, RowType* board);
 
 #endif

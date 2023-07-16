@@ -16,17 +16,19 @@ int points = 0;
 int bestPoints = 0;
 
 void playGame() {
-    resetBoard();
+    RowType* board[BOARD_HEIGTH] = {0};
     while(1) {
         Inventory inv = getRandomInventory();
-
-        Move move = getBestMove(&inv);
+        Move move = getBestMove(&inv, board);
 
         if(!move.isPlaceable){
-            printf("VERLOREN: %d\nTiles:\n", points);
+            printBoard(board);
+            printf("TILES:\n");
             printTile(&(inv.tiles[0]));
             printTile(&(inv.tiles[1]));
             printTile(&(inv.tiles[2]));
+
+            printf("\nVERLOREN: %d\n", points);
 
             if(points > bestPoints){
                 bestPoints = points;
@@ -38,12 +40,12 @@ void playGame() {
         }
 
         for(uint8_t i = 0; i < 3; i++){
-            placeTileOnBoard(&(move.moves[i].tile), move.moves[i].x_position,  move.moves[i].y_position);
+            placeTileOnBoard(&(move.moves[i].tile), move.moves[i].x_position,  move.moves[i].y_position, board);
             points += move.moves[i].tile.points; 
-            points += 10 * cleanFullRows(&(move.moves[i].tile), move.moves[i].x_position,  move.moves[i].y_position);
+            points += 10 * cleanFullRows(&(move.moves[i].tile), move.moves[i].x_position,  move.moves[i].y_position, board);
         }
 
-        printBoard();
+        printBoard(board);
         printf("Current Points: %d Best Points: %d, Round: %d\n", points, bestPoints, roundsPlayed);
     }
 }
@@ -56,38 +58,25 @@ void simulate(){
     }
 }
 
-void bestMove(int argc, char *argv[]){
+void bestMove(int argc, char* argv[]) {
     //Init
     Inventory inv;
-    initBestMoveProgram(argc, argv, &inv);
+    RowType board[BOARD_HEIGTH] = {0}; // Create a board instance
+    initBestMoveProgram(argc, argv, &inv, board); // Pass the board instance
 
-    printBoard();
+    printBoard(board); // Pass the board instance
+
     //Calc
-    Move move = getBestMove(&inv);
+    Move move = getBestMove(&inv, &board); // Pass the board instance
 
     //Output
     outputMove(move);
 }
 
+
 int main(int argc, char *argv[]) {
     srand(time(NULL));
 
-    RowType* exBoard[BOARD_HEIGTH] = {
-        0b1000101010000000,
-        0b0101010101000000,
-        0b1010101010000000,
-        0b0101010101000000,
-        0b1010101010000000,
-        0b0101010101000000,
-        0b1010101010000000,
-        0b0101010101000000,
-        0b1010101010000000,
-        0b0101010101000000,
-    };
-
-    pasteBoard(exBoard);
-    printf("\n%d",judgeBoard(board));
-    exit(1);
     if (IS_SIMULATING) simulate();
     else bestMove(argc, argv);
 }

@@ -24,26 +24,29 @@ int stringToInt(const char* str) {
     return result;
 }
 
-void initBestMoveProgram(int argc, char *argv[], Inventory *inv){
+void initBestMoveProgram(int argc, char* argv[], Inventory* inv, RowType* board) {
     if (argc != (INVENTORY_SPACE + 2)) {
         printf("Nicht genug Argumente gegeben!");
         return;
     }
-        
-    //Board init
-    for(uint8_t y = 0; y < BOARD_HEIGTH; y++){
-        for(uint8_t x = 0; x < BOARD_WIDTH; x++){
+
+    // Board init
+    for (uint8_t y = 0; y < BOARD_HEIGTH; y++) {
+        for (uint8_t x = 0; x < BOARD_WIDTH; x++) {
             uint16_t index = y * BOARD_WIDTH + x;
-            if (argv[1][index] == '1') setBlockOnBoard(x, y, 1);
-            else setBlockOnBoard(x, y, 0);
+            if (argv[1][index] == '1')
+                setBlockOnBoard(board, x, y, 1);
+            else
+                setBlockOnBoard(board, x, y, 0);
         }
     }
 
-    //Inventory Init
-    for(uint8_t i = 0; i < INVENTORY_SPACE; i++){
+    // Inventory Init
+    for (uint8_t i = 0; i < INVENTORY_SPACE; i++) {
         inv->tiles[i] = getTile(stringToInt(argv[i + 2]));
     }
 }
+
 
 void outputMove(Move move){
     FILE *file = fopen("outputBestMove", "w"); // Open the file in write mode

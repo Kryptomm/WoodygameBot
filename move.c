@@ -43,85 +43,54 @@ Inventory getRandomInventory() {
     return inv;
 }
 
-Move getBestMove(Inventory* inv) {
+void recBestMove(Inventory* inv, RowType* board, uint8_t layer, Move* bestMove, Move* currentMove) {
+    //Hier bewerten
+    if (layer == 0) {
+        RewardType boardScore = judgeBoard(board);
+        if(boardScore > bestMove->points) {
+            bestMove->isPlaceable = 1;
+            bestMove->points = currentMove->points;
+            for (int i = 0; i < INVENTORY_SPACE; i++) {
+                bestMove->moves[i] = currentMove->moves[i];
+            }
+        }
+        return;
+    }
+
+    //Hier Platzieren und rekursiv aufrufen
+    RowType* copiedBoardLayer[BOARD_HEIGTH];
+    for (int index = 0; index < BOARD_WIDTH * BOARD_HEIGTH; index++) {
+        int x = index % BOARD_WIDTH;
+        int y = index / BOARD_WIDTH;
+        
+        copyBoard(copiedBoardLayer, board);
+        Tile tile = inv->tiles[(INVENTORY_SPACE - layer)];
+        if (!placeTileOnBoard(&tile, x, y, copiedBoardLayer)) continue;
+        cleanFullRows(&tile, x, y, board);
+
+        SingleMove move = {.tile = tile, .x_position = x, .y_position = y};
+        currentMove->moves[(INVENTORY_SPACE - layer)] = move;
+
+        recBestMove(inv, copiedBoardLayer, layer - 1, bestMove, currentMove);
+        pasteBoard(copiedBoardLayer, board);
+    }
+}
+
+Move getBestMove(Inventory* inv, RowType* board) {
     Move bestMove = {
         .moves = { NULL, NULL, NULL },
-        .isPlaceable = 0
+        .isPlaceable = 0,
+        .points = 0
     };
 
-    RewardType bestPoint = 0;
     Inventory* perms = getInventoryPermutations(inv);
 
     //Permutation Loop
     for(uint8_t i = 0; i < 6; i++){
         Inventory permInv = perms[i];
-
-        //START ERSTE ITERATION
-        for(int index0 = 0; index0 < BOARD_WIDTH * BOARD_HEIGTH; index0++){
-            int x0 = index0 % BOARD_WIDTH;
-            int y0 = index0 / BOARD_WIDTH;
-
-            //Before Iteration of Placement
-            RowType* copiedBoardLayer0[BOARD_HEIGTH];
-            copyBoard(copiedBoardLayer0);
-
-            //Placement
-            Tile firstTile = permInv.tiles[0];
-            if (!placeTileOnBoard(&firstTile, x0, y0)) continue;
-            cleanFullRows(&firstTile, x0, y0);
-
-            //START ZWEITE ITERATION
-            for(int index1 = 0; index1 < BOARD_WIDTH * BOARD_HEIGTH; index1++){
-                int x1 = index1 % BOARD_WIDTH;
-                int y1 = index1 / BOARD_WIDTH;
-
-                RowType* copiedBoardLayer1[BOARD_HEIGTH];
-                copyBoard(copiedBoardLayer1);
-
-                Tile secondTile = permInv.tiles[1];
-                if (!placeTileOnBoard(&secondTile, x1, y1)) continue;
-                cleanFullRows(&secondTile, x1, y1);
-
-                //START DRITTE ITERATION
-                for(int index2 = 0; index2 < BOARD_WIDTH * BOARD_HEIGTH; index2++){
-                    int x2 = index2 % BOARD_WIDTH;
-                    int y2 = index2 / BOARD_WIDTH;
-
-                    RowType* copiedBoardLayer2[BOARD_HEIGTH];
-                    copyBoard(copiedBoardLayer2);
-
-                    Tile thirdTile = permInv.tiles[2];
-                    if (!placeTileOnBoard(&thirdTile, x2, y2)) continue;
-                    cleanFullRows(&thirdTile, x2, y2);
-
-                    //HIER BEST MOVE EVALUATEN
-                    RewardType boardScore = judgeBoard(board);
-                    if(boardScore > bestPoint){
-                        bestPoint = boardScore;
-                        SingleMove move1 = { .tile = firstTile, .x_position = x0, .y_position = y0 };
-                        SingleMove move2 = { .tile = secondTile, .x_position = x1, .y_position = y1 };
-                        SingleMove move3 = { .tile = thirdTile, .x_position = x2, .y_position = y2 };
-
-                        bestMove.moves[0] = move1;
-                        bestMove.moves[1] = move2;
-                        bestMove.moves[2] = move3;
-
-                        bestMove.isPlaceable = 1;
-                    }
-
-                    pasteBoard(copiedBoardLayer2);
-                }
-                //ENDE DRITTE ITERATION
-
-                pasteBoard(copiedBoardLayer1);
-            }
-            //ENDE ZWEITE ITERATION
-
-            //After an Iteration of Placement
-            pasteBoard(copiedBoardLayer0);
-        }
-        //ENDE ERSTE ITERATION
+        Move curMove = { .isPlaceable = 0, .points = 0 };
+        recBestMove(&permInv, board, INVENTORY_SPACE, &bestMove, &curMove);
     }
-
     return bestMove;
+
 }

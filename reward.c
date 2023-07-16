@@ -17,7 +17,7 @@ RewardType blocksFitting(RowType* board){
         possiblePoints += tile.points;
         for(uint8_t y = 0; y < BOARD_HEIGTH && !skipTile; y++){
             for(uint8_t x = 0; x < BOARD_WIDTH && !skipTile; x++){
-                if (isPlaceable(&tile, x, y)){
+                if (isPlaceable(&tile, x, y, board)){
                     skipTile = 1;
                     points += tile.points;
                 }
@@ -32,11 +32,11 @@ RewardType singleBlockObs(RowType* board){
     uint16_t totalSingleBlocks = ((BOARD_HEIGTH - 1) * (BOARD_HEIGTH - 1)) / 2;
     for(uint8_t y = 1; y < BOARD_HEIGTH - 1; y++){
         for(uint8_t x = 1; x < BOARD_WIDTH - 1; x++){
-            uint8_t block = getBlockOnBoard(x, y);
-            uint8_t rightBlock = getBlockOnBoard(x + 1, y);
-            uint8_t belowBlock = getBlockOnBoard(x, y + 1);
-            uint8_t leftBlock = getBlockOnBoard(x - 1, y);
-            uint8_t upBlock = getBlockOnBoard(x, y - 1);
+            uint8_t block = getBlockOnBoard(board, x, y);
+            uint8_t rightBlock = getBlockOnBoard(board, x + 1, y);
+            uint8_t belowBlock = getBlockOnBoard(board, x, y + 1);
+            uint8_t leftBlock = getBlockOnBoard(board, x - 1, y);
+            uint8_t upBlock = getBlockOnBoard(board, x, y - 1);
 
             if(block && !rightBlock && !belowBlock && !leftBlock && !upBlock) singleBlocks++;
         }
@@ -49,9 +49,9 @@ RewardType edgesReward(RowType* board){
     uint16_t totalEdges = BOARD_HEIGTH * (BOARD_WIDTH - 1) + BOARD_WIDTH * (BOARD_HEIGTH - 1);
     for(uint8_t y = 0; y < BOARD_HEIGTH; y++){
         for(uint8_t x = 0; x < BOARD_WIDTH; x++){
-            uint8_t block = getBlockOnBoard(x, y);
-            uint8_t rightBlock = getBlockOnBoard(x + 1, y);
-            uint8_t belowBlock = getBlockOnBoard(x, y + 1);
+            uint8_t block = getBlockOnBoard(board, x, y);
+            uint8_t rightBlock = getBlockOnBoard(board, x + 1, y);
+            uint8_t belowBlock = getBlockOnBoard(board, x, y + 1);
 
             if(block != rightBlock && rightBlock != 2) edges++;
             if(block != belowBlock && belowBlock != 2) edges++;
@@ -75,10 +75,10 @@ RewardType freeSpaceReward(RowType* board){
 RewardType judgeBoard(RowType* board){
     RewardType reward = 0;
 
-    reward += 0 * freeSpaceReward(board);
+    reward += 10 * freeSpaceReward(board);
     reward += 1 * edgesReward(board);
-    reward += 0 * singleBlockObs(board);
-    reward += 0 * blocksFitting(board);
+    //reward += 1 * singleBlockObs(board);
+    reward += 1 * blocksFitting(board);
 
     return reward;
 }

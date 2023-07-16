@@ -3,17 +3,14 @@
 #include <stdint.h>
 #include <stdio.h>
 
-RowType board[BOARD_HEIGTH] = {0};
-
-void printBoard(void){
-    printf("#################\n");
-    for(uint8_t y = 0; y < BOARD_HEIGTH; y++){
-        for(uint8_t x = 0; x < BOARD_WIDTH; x++){
-            uint8_t block = getBlockOnBoard(x,y);
-            if (block){
+void printBoard(RowType* board) {
+    printf("\n#################\n");
+    for (uint8_t y = 0; y < BOARD_HEIGTH; y++) {
+        for (uint8_t x = 0; x < BOARD_WIDTH; x++) {
+            uint8_t block = getBlockOnBoard(board, x, y);
+            if (block) {
                 printf(ANSI_COLOR_GREEN "%d " ANSI_COLOR_RESET, block);
-            }
-            else {
+            } else {
                 printf(ANSI_COLOR_RED "%d " ANSI_COLOR_RESET, block);
             }
         }
@@ -21,7 +18,7 @@ void printBoard(void){
     }
 }
 
-uint8_t isPlaceable(Tile* tile, uint8_t x, uint8_t y) {
+uint8_t isPlaceable(Tile* tile, uint8_t x, uint8_t y, RowType* board) {
     if (tile->width + x - 1 >= BOARD_WIDTH) return 0;
     if (tile->height + y - 1 >= BOARD_HEIGTH) return 0;
 
@@ -32,17 +29,17 @@ uint8_t isPlaceable(Tile* tile, uint8_t x, uint8_t y) {
     return 1;
 }
 
-uint8_t placeTileOnBoard(Tile* tile, uint8_t x, uint8_t y){
-    if (!isPlaceable(tile,x,y)) return 0;
+uint8_t placeTileOnBoard(Tile* tile, uint8_t x, uint8_t y, RowType* board) {
+    if (!isPlaceable(tile, x, y, board)) return 0;
     for (uint8_t i = 0; i < tile->height; i++) {
-        board[y + i] |= (tile->grid[i] << (16 - x  - tile->width));
+        board[y + i] |= (tile->grid[i] << (16 - x - tile->width));
     }
     return 1;
 }
 
 //Cleans Rows and Columns based on the last placed tile and their position
 //Returns the number of Columns and Rows cleared.
-uint8_t cleanFullRows(Tile* tile, uint8_t x, uint8_t y) {
+uint8_t cleanFullRows(Tile* tile, uint8_t x, uint8_t y, RowType* board) {
     uint8_t clearedRows = 0;
     uint8_t rowsToClear = 0;
     uint8_t columnsToClear = 0;
@@ -61,7 +58,7 @@ uint8_t cleanFullRows(Tile* tile, uint8_t x, uint8_t y) {
         columnsToClear <<= 1;
         uint8_t clearColumn = 1;
         for(uint8_t j = 0; j < BOARD_HEIGTH; j++){
-            if(getBlockOnBoard(i + x, j) == 0){
+            if(getBlockOnBoard(board, i + x, j) == 0){
                 clearColumn = 0;
             }
         }
@@ -83,7 +80,7 @@ uint8_t cleanFullRows(Tile* tile, uint8_t x, uint8_t y) {
     for(int8_t i = tile->width - 1; i >= 0; i--){
         if(columnsToClear & 1){
             for(uint8_t j = 0; j < BOARD_HEIGTH; j++){
-                setBlockOnBoard(x + i, j, 0);
+                setBlockOnBoard(board, x + i, j, 0);
             }
         }
         columnsToClear >>= 1;
@@ -91,36 +88,35 @@ uint8_t cleanFullRows(Tile* tile, uint8_t x, uint8_t y) {
     return clearedRows;
 }
 
-//Gets a Single Block on Board
-uint8_t getBlockOnBoard(uint8_t x, uint8_t y) {
-    if(x >= BOARD_WIDTH || y >= BOARD_HEIGTH) return 2;
+
+uint8_t getBlockOnBoard(RowType* board, uint8_t x, uint8_t y) {
+    if (x >= BOARD_WIDTH || y >= BOARD_HEIGTH) return 2;
     return (board[y] >> (15 - x)) & 1;
 }
 
-//Places a single Block on Board
-void setBlockOnBoard(uint8_t x, uint8_t y, uint8_t num){
-    if(num) {
-        board[y] |= (1 << (15-x));
-    }
-    else {
-        board[y] &= ~(1 << (15-x));
+
+void setBlockOnBoard(RowType* board, uint8_t x, uint8_t y, uint8_t num) {
+    if (num) {
+        board[y] |= (1 << (15 - x));
+    } else {
+        board[y] &= ~(1 << (15 - x));
     }
 }
 
-void copyBoard(RowType* destination[]) {
+void copyBoard(RowType* destination, RowType* source) {
     for (int i = 0; i < BOARD_HEIGTH; i++) {
-        destination[i] = board[i];
+        destination[i] = source[i];
     }
 }
 
-void pasteBoard(RowType* source[]){
+void pasteBoard(RowType* destination, RowType* source) {
     for (int i = 0; i < BOARD_HEIGTH; i++) {
-        board[i] = source[i];
+        destination[i] = source[i];
     }
 }
 
-void resetBoard(){
-    for(uint8_t y = 0; y < BOARD_HEIGTH; y++){
+void resetBoard(RowType* board) {
+    for (uint8_t y = 0; y < BOARD_HEIGTH; y++) {
         board[y] = 0;
     }
 }
