@@ -9,7 +9,7 @@ typedef int RewardType;
 
 //BEHAVIOUR
 #define IS_SIMULATING 1
-#define MAX_ROUNDS 1000
+#define MAX_ROUNDS 300
 
 //TILES
 #define MAX_TILE_HEIGHT 5
@@ -18,10 +18,8 @@ typedef int RewardType;
 #define BOARD_WIDTH 10
 #define BOARD_HEIGTH 10
 
-//POINTS
-#define FOUR_ATONCE_BONUS 200
-#define FIVE_ATONCE_BONUS 300
-#define SIX_ATONCE_BONUS 500
+//REWARDS
+#define REWARD_SCALE_MULTIPLIER 100000
 
 //INVENTORY
 #define INVENTORY_SPACE 3

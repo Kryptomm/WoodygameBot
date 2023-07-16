@@ -9,11 +9,13 @@
 
 RewardType blocksFitting(RowType* board){
     RewardType points = 0;
+    int possiblePoints = 0;
     int tile_amount = getTilesAmount();
     for(int t = 0; t < tile_amount; t++){
         uint8_t skipTile = 0;
-        for(uint8_t y = 0; y < BOARD_HEIGTH && !skipTile; y++){
-            for(uint8_t x = 0; x < BOARD_WIDTH && !skipTile; x++){
+        possiblePoints += points;
+        for(uint8_t y = 0; y < BOARD_HEIGTH && skipTile == 0; y++){
+            for(uint8_t x = 0; x < BOARD_WIDTH && skipTile == 0; x++){
                 Tile tile = getTile(t);
                 if (isPlaceable(&tile, x, y)){
                     skipTile = 1;
@@ -22,11 +24,12 @@ RewardType blocksFitting(RowType* board){
             }
         }
     }
-    return points;
+    return (points * REWARD_SCALE_MULTIPLIER) / possiblePoints;
 }
 
 RewardType singleBlockObs(RowType* board){
     uint16_t singleBlocks = 0;
+    uint16_t totalSingleBlocks = ((BOARD_HEIGTH - 1) * (BOARD_HEIGTH - 1)) / 2;
     for(uint8_t y = 1; y < BOARD_HEIGTH - 1; y++){
         for(uint8_t x = 1; x < BOARD_WIDTH - 1; x++){
             uint8_t block = getBlockOnBoard(x, y);
@@ -38,11 +41,12 @@ RewardType singleBlockObs(RowType* board){
             if(block && !rightBlock && !belowBlock && !leftBlock && !upBlock) singleBlocks++;
         }
     }
-    return -singleBlocks;
+    return (singleBlocks * REWARD_SCALE_MULTIPLIER) / totalSingleBlocks;
 }
 
 RewardType edgesReward(RowType* board){
     uint16_t edges = 0;
+    uint16_t totalEdges = 0;
     for(uint8_t y = 0; y < BOARD_HEIGTH; y++){
         for(uint8_t x = 0; x < BOARD_WIDTH; x++){
             uint8_t block = getBlockOnBoard(x, y);
@@ -57,24 +61,24 @@ RewardType edgesReward(RowType* board){
 }
 
 RewardType freeSpaceReward(RowType* board){
-    RewardType reward = BOARD_HEIGTH * BOARD_WIDTH;
+    RewardType freeSpace = BOARD_HEIGTH * BOARD_WIDTH;
     for(uint8_t y = 0; y < BOARD_HEIGTH; y++){
         RowType row = board[y];
         while(row != 0){
-            reward -= row & 1;
+            freeSpace -= row & 1;
             row >>= 1;
         }
     }
-    return reward;
+    return (freeSpace * REWARD_SCALE_MULTIPLIER) / (BOARD_HEIGTH * BOARD_WIDTH);
 }
 
 RewardType judgeBoard(RowType* board){
     RewardType reward = 0;
 
     reward += 10 * freeSpaceReward(board);
-    reward += edgesReward(board);
-    reward += singleBlockObs(board);
-    reward += 2 * blocksFitting(board);
+    reward += 2 * edgesReward(board);
+    reward += 1 * singleBlockObs(board);
+    reward += 0.2 * blocksFitting(board);
 
     return reward;
 }
