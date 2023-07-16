@@ -1,10 +1,22 @@
 #include <stdint.h>
 #include <stdlib.h>
-#include "defines.h"
+#include <pthread.h>
 #include <stddef.h>
+
+#include "defines.h"
 #include "move.h"
 #include "board.h"
 #include "reward.h"
+
+pthread_mutex_t bestMoveLock;
+
+typedef struct {
+    Inventory* inv;
+    RowType* board;
+    uint8_t layer;
+    Move* bestMove;
+    Move* currentMove;
+} ThreadData;
 
 Inventory* getInventoryPermutations(Inventory* inv) {
     Inventory* perms = malloc(6 * sizeof(Inventory));
@@ -48,11 +60,13 @@ void recBestMove(Inventory* inv, RowType* board, uint8_t layer, Move* bestMove, 
     if (layer == 0) {
         RewardType boardScore = judgeBoard(board);
         if(boardScore > bestMove->points) {
+            pthread_mutex_lock(&bestMoveLock);
             bestMove->isPlaceable = 1;
             bestMove->points = boardScore;
             for (int i = 0; i < INVENTORY_SPACE; i++) {
                 bestMove->moves[i] = currentMove->moves[i];
             }
+            pthread_mutex_unlock(&bestMoveLock);
         }
         return;
     }
@@ -76,6 +90,20 @@ void recBestMove(Inventory* inv, RowType* board, uint8_t layer, Move* bestMove, 
     }
 }
 
+void* recBestMoveStarter(void* arg) {
+    ThreadData* threadData = (ThreadData*)arg;
+
+    Inventory* inv = threadData->inv;
+    RowType* board = threadData->board;
+    uint8_t layer = threadData->layer;
+    Move* bestMove = threadData->bestMove;
+    Move* currentMove = threadData->currentMove;
+
+    recBestMove(inv, board, layer, bestMove, currentMove);
+
+    pthread_exit(NULL);
+}
+
 Move getBestMove(Inventory* inv, RowType* board) {
     Move bestMove = {
         .moves = { NULL, NULL, NULL },
@@ -84,13 +112,21 @@ Move getBestMove(Inventory* inv, RowType* board) {
     };
 
     Inventory* perms = getInventoryPermutations(inv);
-
-    //Permutation Loop
     for(uint8_t i = 0; i < 6; i++){
         Inventory permInv = perms[i];
         Move curMove = { .isPlaceable = 0, .points = 0 };
+
+        ThreadData data = {
+            .inv = &permInv,
+            .board = board,
+            .layer = INVENTORY_SPACE,
+            .bestMove = &bestMove,
+            .currentMove = &curMove
+        };
+
         recBestMove(&permInv, board, INVENTORY_SPACE, &bestMove, &curMove);
     }
+
     return bestMove;
 
 }
