@@ -72,7 +72,20 @@ void bestMove(int argc, char *argv[]){
 int main(int argc, char *argv[]) {
     srand(time(NULL));
 
-    resetBoard();
+    RowType* exBoard[BOARD_HEIGTH] = {
+        0b1000101010000000,
+        0b0101010101000000,
+        0b1010101010000000,
+        0b0101010101000000,
+        0b1010101010000000,
+        0b0101010101000000,
+        0b1010101010000000,
+        0b0101010101000000,
+        0b1010101010000000,
+        0b0101010101000000,
+    };
+
+    pasteBoard(exBoard);
     printf("\n%d",judgeBoard(board));
     exit(1);
     if (IS_SIMULATING) simulate();
