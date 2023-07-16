@@ -72,6 +72,9 @@ void bestMove(int argc, char *argv[]){
 int main(int argc, char *argv[]) {
     srand(time(NULL));
 
+    resetBoard();
+    printf("\n%d",judgeBoard(board));
+    exit(1);
     if (IS_SIMULATING) simulate();
     else bestMove(argc, argv);
 }

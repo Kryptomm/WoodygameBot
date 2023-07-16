@@ -9,17 +9,17 @@
 
 RewardType blocksFitting(RowType* board){
     RewardType points = 0;
-    int possiblePoints = 0;
+    RewardType possiblePoints = 0;
     int tile_amount = getTilesAmount();
     for(int t = 0; t < tile_amount; t++){
         uint8_t skipTile = 0;
-        possiblePoints += points;
-        for(uint8_t y = 0; y < BOARD_HEIGTH && skipTile == 0; y++){
-            for(uint8_t x = 0; x < BOARD_WIDTH && skipTile == 0; x++){
-                Tile tile = getTile(t);
+        Tile tile = getTile(t);
+        possiblePoints += tile.points;
+        for(uint8_t y = 0; y < BOARD_HEIGTH && !skipTile; y++){
+            for(uint8_t x = 0; x < BOARD_WIDTH && !skipTile; x++){
                 if (isPlaceable(&tile, x, y)){
                     skipTile = 1;
-                    points = tile.points;
+                    points += tile.points;
                 }
             }
         }
@@ -41,7 +41,7 @@ RewardType singleBlockObs(RowType* board){
             if(block && !rightBlock && !belowBlock && !leftBlock && !upBlock) singleBlocks++;
         }
     }
-    return (singleBlocks * REWARD_SCALE_MULTIPLIER) / totalSingleBlocks;
+    return ((totalSingleBlocks - singleBlocks) * REWARD_SCALE_MULTIPLIER) / totalSingleBlocks;
 }
 
 RewardType edgesReward(RowType* board){
@@ -57,7 +57,7 @@ RewardType edgesReward(RowType* board){
             if(block != belowBlock && belowBlock != 2) edges++;
         }
     }
-    return (edges * REWARD_SCALE_MULTIPLIER) / totalEdges;
+    return ((totalEdges - edges) * REWARD_SCALE_MULTIPLIER) / totalEdges;
 }
 
 RewardType freeSpaceReward(RowType* board){
@@ -75,10 +75,10 @@ RewardType freeSpaceReward(RowType* board){
 RewardType judgeBoard(RowType* board){
     RewardType reward = 0;
 
-    reward += 10 * freeSpaceReward(board);
-    reward += 2 * edgesReward(board);
-    reward += 1 * singleBlockObs(board);
-    reward += 0.2 * blocksFitting(board);
+    reward += 0 * freeSpaceReward(board);
+    reward += 0 * edgesReward(board);
+    reward += 0 * singleBlockObs(board);
+    reward += 1 * blocksFitting(board);
 
     return reward;
 }
