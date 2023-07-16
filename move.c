@@ -112,6 +112,7 @@ Move getBestMove(Inventory* inv, RowType* board) {
     };
 
     Inventory* perms = getInventoryPermutations(inv);
+    //Permutation Loop
     for(uint8_t i = 0; i < 6; i++){
         Inventory permInv = perms[i];
         Move curMove = { .isPlaceable = 0, .points = 0 };
@@ -123,10 +124,8 @@ Move getBestMove(Inventory* inv, RowType* board) {
             .bestMove = &bestMove,
             .currentMove = &curMove
         };
-
         recBestMove(&permInv, board, INVENTORY_SPACE, &bestMove, &curMove);
     }
-
     return bestMove;
 
 }
