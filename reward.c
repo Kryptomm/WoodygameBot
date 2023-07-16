@@ -1,9 +1,29 @@
 #include "defines.h"
 #include "reward.h"
 #include "board.h"
+#include "tiles.h"
+#include "board.h"
 
 #include <stdio.h>
 #include <stdint.h>
+
+RewardType blocksFitting(RowType* board){
+    RewardType points = 0;
+    int tile_amount = getTilesAmount();
+    for(int t = 0; t < tile_amount; t++){
+        uint8_t skipTile = 0;
+        for(uint8_t y = 0; y < BOARD_HEIGTH && !skipTile; y++){
+            for(uint8_t x = 0; x < BOARD_WIDTH && !skipTile; x++){
+                Tile tile = getTile(t);
+                if (isPlaceable(&tile, x, y)){
+                    skipTile = 1;
+                    points = tile.points;
+                }
+            }
+        }
+    }
+    return points;
+}
 
 RewardType singleBlockObs(RowType* board){
     uint16_t singleBlocks = 0;
@@ -53,7 +73,8 @@ RewardType judgeBoard(RowType* board){
 
     reward += 10 * freeSpaceReward(board);
     reward += edgesReward(board);
-    //reward += singleBlockObs(board);
+    reward += singleBlockObs(board);
+    reward += 2 * blocksFitting(board);
 
     return reward;
 }

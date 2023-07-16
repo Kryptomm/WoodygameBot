@@ -12,6 +12,7 @@ typedef struct
     uint8_t id;
 } Tile;
 
+int getTilesAmount();
 Tile getRandomTile(void);
 void printTile(Tile* tile);
 Tile getTile(uint16_t num);

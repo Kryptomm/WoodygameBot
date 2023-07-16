@@ -152,3 +152,8 @@ void printTile(Tile* tile) {
         printf("\n");
     }
 }
+
+int getTilesAmount() {
+    int numTiles = sizeof(tiles) / sizeof(tiles[0]);
+    return numTiles;
+}
