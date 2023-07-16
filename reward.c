@@ -46,9 +46,9 @@ RewardType singleBlockObs(RowType* board){
 
 RewardType edgesReward(RowType* board){
     uint16_t edges = 0;
-    uint16_t totalEdges = 0;
-    for(uint8_t y = 0; y < BOARD_HEIGTH; y++){
-        for(uint8_t x = 0; x < BOARD_WIDTH; x++){
+    uint16_t totalEdges = ((BOARD_HEIGTH - 1) * (BOARD_HEIGTH - 1)) * 2;;
+    for(uint8_t y = 0; y < BOARD_HEIGTH - 1; y++){
+        for(uint8_t x = 0; x < BOARD_WIDTH - 1; x++){
             uint8_t block = getBlockOnBoard(x, y);
             uint8_t rightBlock = getBlockOnBoard(x + 1, y);
             uint8_t belowBlock = getBlockOnBoard(x, y + 1);
@@ -57,7 +57,7 @@ RewardType edgesReward(RowType* board){
             if(block != belowBlock && belowBlock != 2) edges++;
         }
     }
-    return ((BOARD_WIDTH + 1) * BOARD_WIDTH + (BOARD_HEIGTH + 1) * BOARD_WIDTH) - edges;
+    return (edges * REWARD_SCALE_MULTIPLIER) / totalEdges;
 }
 
 RewardType freeSpaceReward(RowType* board){
