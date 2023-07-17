@@ -14,7 +14,8 @@
         "*.tcc": "c",
         "cstdint": "c",
         "typeinfo": "c",
-        "stdlib.h": "c"
+        "stdlib.h": "c",
+        "stddef.h": "c"
     },
     "C_Cpp.errorSquiggles": "disabled"
 }

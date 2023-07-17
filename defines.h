@@ -34,20 +34,22 @@ typedef long RewardType;
 #define ANSI_COLOR_RESET   "\x1b[0m"
 
 // Mutex Defines
-#ifdef _WIN32 // Windows
+#ifdef _WIN32 // Check for Windows platform
     #include <windows.h>
-    #define MUTEX_TYPE HANDLE
-    #define MUTEX_INIT(mutex) mutex = CreateMutex(NULL, FALSE, NULL)
-    #define MUTEX_LOCK(mutex) WaitForSingleObject(mutex, INFINITE)
-    #define MUTEX_UNLOCK(mutex) ReleaseMutex(mutex)
-    #define MUTEX_DESTROY(mutex) CloseHandle(mutex)
-#else // Assume POSIX (Linux, macOS, etc.)
+    typedef HANDLE My_pthread_t;
+    typedef CRITICAL_SECTION My_pthread_mutex_t;
+    #define PTHREAD_MUTEX_INIT(mutex, attr) InitializeCriticalSection(mutex)
+    #define PTHREAD_MUTEX_LOCK(mutex) EnterCriticalSection(mutex)
+    #define PTHREAD_MUTEX_UNLOCK(mutex) LeaveCriticalSection(mutex)
+    #define PTHREAD_MUTEX_DESTROY(mutex) DeleteCriticalSection(mutex)
+#else // Assume POSIX (Linux/macOS) platform
     #include <pthread.h>
-    #define MUTEX_TYPE pthread_mutex_t
-    #define MUTEX_INIT(mutex) pthread_mutex_init(&mutex, NULL)
-    #define MUTEX_LOCK(mutex) pthread_mutex_lock(&mutex)
-    #define MUTEX_UNLOCK(mutex) pthread_mutex_unlock(&mutex)
-    #define MUTEX_DESTROY(mutex) pthread_mutex_destroy(&mutex)
+    typedef pthread_t My_pthread_t;
+    typedef pthread_mutex_t My_pthread_mutex_t;
+    #define PTHREAD_MUTEX_INIT(mutex, attr) pthread_mutex_init(mutex, attr)
+    #define PTHREAD_MUTEX_LOCK(mutex) pthread_mutex_lock(mutex)
+    #define PTHREAD_MUTEX_UNLOCK(mutex) pthread_mutex_unlock(mutex)
+    #define PTHREAD_MUTEX_DESTROY(mutex) pthread_mutex_destroy(mutex)
 #endif
 
 #endif

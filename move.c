@@ -8,8 +8,6 @@
 #include "board.h"
 #include "reward.h"
 
-pthread_mutex_t bestMoveLock;
-
 typedef struct {
     Inventory* inv;
     RowType* board;
@@ -60,13 +58,11 @@ void recBestMove(Inventory* inv, RowType* board, uint8_t layer, Move* bestMove, 
     if (layer == 0) {
         RewardType boardScore = judgeBoard(board);
         if(boardScore > bestMove->points) {
-            pthread_mutex_lock(&bestMoveLock);
             bestMove->isPlaceable = 1;
             bestMove->points = boardScore;
             for (int i = 0; i < INVENTORY_SPACE; i++) {
                 bestMove->moves[i] = currentMove->moves[i];
             }
-            pthread_mutex_unlock(&bestMoveLock);
         }
         return;
     }
@@ -92,40 +88,51 @@ void recBestMove(Inventory* inv, RowType* board, uint8_t layer, Move* bestMove, 
 
 void* recBestMoveStarter(void* arg) {
     ThreadData* threadData = (ThreadData*)arg;
-
-    Inventory* inv = threadData->inv;
-    RowType* board = threadData->board;
-    uint8_t layer = threadData->layer;
-    Move* bestMove = threadData->bestMove;
-    Move* currentMove = threadData->currentMove;
-
-    recBestMove(inv, board, layer, bestMove, currentMove);
-
-    pthread_exit(NULL);
+    recBestMove(threadData->inv, threadData->board, threadData->layer,  threadData->bestMove, threadData->currentMove);
 }
 
 Move getBestMove(Inventory* inv, RowType* board) {
-    Move bestMove = {
-        .moves = { NULL, NULL, NULL },
-        .isPlaceable = 0,
-        .points = 0
-    };
+    Move* bestMoves[6] = { NULL, NULL, NULL, NULL, NULL, NULL };
 
     Inventory* perms = getInventoryPermutations(inv);
+    My_pthread_t tid[6];
+
     //Permutation Loop
     for(uint8_t i = 0; i < 6; i++){
         Inventory permInv = perms[i];
-        Move curMove = { .isPlaceable = 0, .points = 0 };
+        Move* curMove = (Move*)malloc(sizeof(Move)); // Allocate memory for curMove dynamically
+        Move* bestMove = (Move*)malloc(sizeof(Move)); // Allocate memory for bestMove dynamically
 
+        curMove->isPlaceable = 0;
+        curMove->points = 0;
+        bestMove->isPlaceable = 0;
+        bestMove->points = 0;
+
+        bestMoves[i] = bestMove;
         ThreadData data = {
             .inv = &permInv,
             .board = board,
             .layer = INVENTORY_SPACE,
-            .bestMove = &bestMove,
-            .currentMove = &curMove
+            .bestMove = bestMove,
+            .currentMove = curMove
         };
-        recBestMove(&permInv, board, INVENTORY_SPACE, &bestMove, &curMove);
-    }
-    return bestMove;
 
+        //pthread_create(&tid[i], NULL, recBestMoveStarter, &data);
+        recBestMove(&permInv, board, INVENTORY_SPACE, bestMove, curMove);
+    }
+
+    for(uint8_t i = 0; i < 6; i++){
+        pthread_join(&tid[i], NULL);
+    }
+
+    Move realbestMove = *bestMoves[0];
+    RewardType bestPoints = bestMoves[0]->points;
+    for(uint8_t i = 0; i < 6; i++){
+        if (bestMoves[i]->points > bestPoints) {
+            bestPoints = bestMoves[i]->points;
+            realbestMove = *bestMoves[i];
+        }
+    }
+
+    return realbestMove;
 }
