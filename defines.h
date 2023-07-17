@@ -9,7 +9,7 @@ typedef long RewardType;
 
 //BEHAVIOUR
 #define IS_SIMULATING 1
-#define MAX_ROUNDS 1
+#define MAX_ROUNDS 300
 
 //TILES
 #define MAX_TILE_HEIGHT 5

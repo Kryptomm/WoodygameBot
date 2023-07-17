@@ -123,7 +123,7 @@ Tile getRandomTile() {
         // Check if the selected number is in the excluded list
         isValidTile = 1;
         for (size_t i = 0; i < numExcluded; i++) {
-            if (randomIndex == excludedList[i] || randomIndex >= 20) {
+            if (randomIndex == excludedList[i]) {
                 isValidTile = 0;
                 break;
             }
