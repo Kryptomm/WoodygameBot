@@ -3,7 +3,7 @@
 #include <stdint.h>
 #include <stdio.h>
 
-void printBoard(RowType* board) {
+void printBoard(RowType* board[]) {
     printf("\n#################\n");
     for (uint8_t y = 0; y < BOARD_HEIGTH; y++) {
         for (uint8_t x = 0; x < BOARD_WIDTH; x++) {

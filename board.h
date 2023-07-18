@@ -4,7 +4,7 @@
 #include "defines.h"
 #include "tiles.h"
 
-void printBoard(RowType* board);
+void printBoard(RowType* board[]);
 
 uint8_t isPlaceable(Tile* tile, uint8_t x, uint8_t y, RowType* board);
 uint8_t placeTileOnBoard(Tile* tile, uint8_t x, uint8_t y, RowType* board);

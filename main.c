@@ -17,6 +17,7 @@ int bestPoints = 0;
 
 void playGame() {
     RowType* board[BOARD_HEIGTH] = {0};
+    printf("\n10\n");
     while(1) {
         Inventory* inv = getRandomInventory();
         Move move = getBestMove(inv, board);
@@ -47,6 +48,7 @@ void playGame() {
 
         printBoard(board);
         printf("Board Points: %ld Current Points: %d Best Points: %d, Round: %d\n", move.points ,points, bestPoints, roundsPlayed);
+
         free(inv);
     }
 }

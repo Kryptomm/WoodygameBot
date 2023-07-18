@@ -91,6 +91,7 @@ void* recBestMoveStarter(void* arg) {
     ThreadData* threadData = (ThreadData*)arg;
     recBestMove(threadData->inv, threadData->board, INVENTORY_SPACE,  threadData->bestMove, threadData->currentMove);
     pthread_exit(NULL);
+    return;
 }
 
 Move getBestMove(Inventory* inv, RowType* board) {
