@@ -21,7 +21,7 @@ typedef struct {
     Tile tiles[INVENTORY_SPACE];
 } Inventory;
 
-Inventory getRandomInventory(void);
+Inventory* getRandomInventory(void);
 Move getBestMove(Inventory* inv, RowType* board);
 
 #endif

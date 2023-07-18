@@ -46,10 +46,11 @@ Inventory* getInventoryPermutations(Inventory* inv) {
     return perms;
 }
 
-Inventory getRandomInventory() {
-    Inventory inv = {
-        .tiles = {getRandomTile(), getRandomTile(), getRandomTile()}
-    };
+Inventory* getRandomInventory() {
+    Inventory* inv = (Inventory*)malloc(sizeof(Inventory));
+    for (int i = 0; i < INVENTORY_SPACE; i++) {
+        inv->tiles[i] = getRandomTile();
+    }
     return inv;
 }
 

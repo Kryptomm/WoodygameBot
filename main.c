@@ -18,15 +18,15 @@ int bestPoints = 0;
 void playGame() {
     RowType* board[BOARD_HEIGTH] = {0};
     while(1) {
-        Inventory inv = getRandomInventory();
-        Move move = getBestMove(&inv, board);
+        Inventory* inv = getRandomInventory();
+        Move move = getBestMove(inv, board);
 
         if(!move.isPlaceable){
             printBoard(board);
             printf("TILES:\n");
-            printTile(&(inv.tiles[0]));
-            printTile(&(inv.tiles[1]));
-            printTile(&(inv.tiles[2]));
+            printTile(&(inv->tiles[0]));
+            printTile(&(inv->tiles[1]));
+            printTile(&(inv->tiles[2]));
 
             printf("\nVERLOREN: %d\n", points);
 
@@ -46,7 +46,8 @@ void playGame() {
         }
 
         printBoard(board);
-        printf("Board Points: %d Current Points: %d Best Points: %d, Round: %d\n", move.points ,points, bestPoints, roundsPlayed);
+        printf("Board Points: %ld Current Points: %d Best Points: %d, Round: %d\n", move.points ,points, bestPoints, roundsPlayed);
+        free(inv);
     }
 }
 
