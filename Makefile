@@ -6,6 +6,12 @@ OBJS = $(SRCS:.c=.o)
 
 TARGET = program
 
+ifeq ($(OS),Windows_NT)
+	RM = del /Q
+else
+	RM = rm -f
+endif
+
 all: $(TARGET)
 
 $(TARGET): $(OBJS)
@@ -15,4 +21,4 @@ $(TARGET): $(OBJS)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -f $(OBJS) $(TARGET)
+	$(RM) $(OBJS) $(TARGET)
