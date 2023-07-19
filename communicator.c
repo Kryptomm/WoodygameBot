@@ -47,7 +47,6 @@ void initBestMoveProgram(int argc, char* argv[], Inventory* inv, RowType* board)
     }
 }
 
-
 void outputMove(Move move){
     FILE *file = fopen("outputBestMove", "w"); // Open the file in write mode
     if (file == NULL) {
@@ -58,6 +57,21 @@ void outputMove(Move move){
     for(uint8_t i = 0; i < INVENTORY_SPACE; i++){
         fprintf(file, "%d %d %d\n", move.moves[i].tile.id, move.moves[i].x_position, move.moves[i].y_position);
     }
+    
+    fclose(file);
+}
+
+void outputWeights(int weights[], int size ,int avg) {
+    FILE *file = fopen("outputWeights", "a"); // Open the file in write mode
+    if (file == NULL) {
+        printf("Failed to open the file.\n");
+        return;
+    }
+
+    for(uint8_t i = 0; i < size; i++){
+        fprintf(file, "%d ", weights[i]);
+    }
+    fprintf(file, "%d\n", avg);
     
     fclose(file);
 }

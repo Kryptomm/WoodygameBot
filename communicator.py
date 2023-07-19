@@ -17,7 +17,6 @@ def compare_2d_arrays(arr1, arr2):
 
     return True
 
-
 def getBoardString(board):
     txt = ""
     for y in range(0, defines.BOARD_HEIGHT):

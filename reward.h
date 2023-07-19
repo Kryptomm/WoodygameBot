@@ -4,6 +4,6 @@
 #include "defines.h"
 
 RewardType judgeBoard(RowType* board);
-
+void setMults(int arr[]);
 
 #endif 

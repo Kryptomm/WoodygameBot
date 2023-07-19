@@ -7,6 +7,18 @@
 #include <stdio.h>
 #include <stdint.h>
 
+int freeSpraceMult = 10;
+int edgesMult = 5;
+int singleblockMult = 0;
+int blocksFittingMult = 1;
+
+void setMults(int arr[]) {
+    freeSpraceMult = arr[0];
+    edgesMult = arr[1];
+    singleblockMult = arr[2];
+    blocksFittingMult = arr[3];
+}
+
 RewardType blocksFitting(RowType* board){
     RewardType points = 0;
     RewardType possiblePoints = 0;
@@ -75,10 +87,10 @@ RewardType freeSpaceReward(RowType* board){
 RewardType judgeBoard(RowType* board){
     RewardType reward = 0;
 
-    reward += 10 * freeSpaceReward(board);
-    reward += 5 * edgesReward(board);
-    //reward += 1 * singleBlockObs(board);
-    reward += 2 * blocksFitting(board);
+    reward += freeSpraceMult * freeSpaceReward(board);
+    reward += edgesMult * edgesReward(board);
+    reward += singleblockMult * singleBlockObs(board);
+    reward += blocksFittingMult * blocksFitting(board);
 
     return reward;
 }

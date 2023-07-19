@@ -44,6 +44,21 @@ int playGame() {
     }
 }
 
+void bestMove(int argc, char* argv[]) {
+    //Init
+    Inventory inv;
+    RowType board[BOARD_HEIGTH] = {0}; // Create a board instance
+    initBestMoveProgram(argc, argv, &inv, board); // Pass the board instance
+
+    printBoard(board); // Pass the board instance
+
+    //Calc
+    Move move = getBestMove(&inv, board); // Pass the board instance
+
+    //Output
+    outputMove(move);
+}
+
 int simulateSpec(){
     int roundsPlayed = 0;
     int pointsTotal = 0;
@@ -64,21 +79,19 @@ int simulateSpec(){
     return avg;
 }
 
-void bestMove(int argc, char* argv[]) {
-    //Init
-    Inventory inv;
-    RowType board[BOARD_HEIGTH] = {0}; // Create a board instance
-    initBestMoveProgram(argc, argv, &inv, board); // Pass the board instance
-
-    printBoard(board); // Pass the board instance
-
-    //Calc
-    Move move = getBestMove(&inv, board); // Pass the board instance
-
-    //Output
-    outputMove(move);
+void simulateRandom(){
+    while(1) {
+        int randomWeights[] = {rand() % REWARD_SCALE_MULTIPLIER, rand() % REWARD_SCALE_MULTIPLIER, rand() % REWARD_SCALE_MULTIPLIER, rand() % REWARD_SCALE_MULTIPLIER};
+        printf("\n");
+        for (int i = 0; i < 4; i++) {
+            printf("%d ", randomWeights[i]);
+        }
+        printf("\n");
+        setMults(randomWeights);
+        int avg = simulateSpec();
+        outputWeights(randomWeights, 4, avg);
+    }
 }
-
 
 int main(int argc, char *argv[]) {
     srand(time(NULL));
@@ -89,6 +102,9 @@ int main(int argc, char *argv[]) {
             break;
         case 1:
             simulateSpec();
+            break;
+        case 2:
+            simulateRandom();
             break;
     }
 }
