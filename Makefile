@@ -12,7 +12,7 @@ else
 	RM = rm -f
 endif
 
-all: $(TARGET)
+all: clean $(TARGET)
 
 $(TARGET): $(OBJS)
 	$(CC) $(CFLAGS) -o $(TARGET) $(OBJS)

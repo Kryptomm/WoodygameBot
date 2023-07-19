@@ -108,7 +108,6 @@ Tile tiles[] = {
 };
 
 
-
 Tile getRandomTile() {
     size_t numTiles = sizeof(tiles) / sizeof(tiles[0]);
     size_t randomIndex;
