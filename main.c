@@ -10,14 +10,10 @@
 #include "move.h"
 #include "communicator.h"
 
-int roundsPlayed = 0;
-int pointsTotal = 0;
-int points = 0;
-int bestPoints = 0;
 
-void playGame() {
+int playGame() {
     RowType* board[BOARD_HEIGTH] = {0};
-    printf("\n10\n");
+    int points = 0;
     while(1) {
         Inventory* inv = getRandomInventory();
         Move move = getBestMove(inv, board);
@@ -31,13 +27,8 @@ void playGame() {
 
             printf("\nVERLOREN: %d\n", points);
 
-            if(points > bestPoints){
-                bestPoints = points;
-            }
-            pointsTotal += points;
-            points = 0;
-            roundsPlayed++;
-            return;
+            free(inv);
+            return points;
         }
 
         for(uint8_t i = 0; i < 3; i++){
@@ -47,18 +38,30 @@ void playGame() {
         }
 
         printBoard(board);
-        printf("Board Points: %ld Current Points: %d Best Points: %d, Round: %d\n", move.points ,points, bestPoints, roundsPlayed);
+        printf("Board Points: %ld Current Points: %d\n", move.points ,points);
 
         free(inv);
     }
 }
 
-void simulate(){
+int simulateSpec(){
+    int roundsPlayed = 0;
+    int pointsTotal = 0;
+    int bestPoints = 0;
+    int avg = 0;
     while(roundsPlayed < MAX_ROUNDS){
-        playGame();
-        int avg = pointsTotal / roundsPlayed;
+        roundsPlayed++;
+        int points = playGame();
+        pointsTotal += points;
+
+        if(points > bestPoints){
+            bestPoints = points;
+        }
+
+        avg = pointsTotal / roundsPlayed;
         printf("AVERAGE: %d TOTAL: %d PLAYED: %d BEST: %d", avg, pointsTotal, roundsPlayed, bestPoints);
     }
+    return avg;
 }
 
 void bestMove(int argc, char* argv[]) {
@@ -70,7 +73,7 @@ void bestMove(int argc, char* argv[]) {
     printBoard(board); // Pass the board instance
 
     //Calc
-    Move move = getBestMove(&inv, &board); // Pass the board instance
+    Move move = getBestMove(&inv, board); // Pass the board instance
 
     //Output
     outputMove(move);
@@ -80,6 +83,12 @@ void bestMove(int argc, char* argv[]) {
 int main(int argc, char *argv[]) {
     srand(time(NULL));
 
-    if (IS_SIMULATING) simulate();
-    else bestMove(argc, argv);
+    switch(MODE){
+        case 0:
+            bestMove(argc, argv);
+            break;
+        case 1:
+            simulateSpec();
+            break;
+    }
 }

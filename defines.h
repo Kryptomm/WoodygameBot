@@ -7,8 +7,11 @@ typedef uint16_t RowType;
 typedef uint8_t TileType;
 typedef long RewardType;
 
+//MACROS
+#define NOT_VALID_TILE(x) ((x) >= 20) 
+
 //BEHAVIOUR
-#define IS_SIMULATING 1
+#define MODE 1
 #define MAX_ROUNDS 300
 
 //TILES

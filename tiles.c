@@ -114,21 +114,9 @@ Tile getRandomTile() {
     size_t randomIndex;
     uint8_t isValidTile;
 
-    uint8_t excludedList[] = { 0 };
-    size_t numExcluded = sizeof(excludedList) / sizeof(excludedList[0]);
-
     do {
         randomIndex = rand() % numTiles;
-
-        // Check if the selected number is in the excluded list
-        isValidTile = 1;
-        for (size_t i = 0; i < numExcluded; i++) {
-            if (randomIndex == excludedList[i]) {
-                isValidTile = 0;
-                break;
-            }
-        }
-    } while (!isValidTile);
+    } while (NOT_VALID_TILE(randomIndex));
 
     return tiles[randomIndex];
 }
