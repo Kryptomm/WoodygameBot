@@ -8,10 +8,10 @@ typedef uint8_t TileType;
 typedef long RewardType;
 
 //MACROS
-#define NOT_VALID_TILE(x) 0//((x) >= 20) 
+#define NOT_VALID_TILE(x) ((x) >= 20) 
 
 //BEHAVIOUR
-#define MODE 2
+#define MODE 1
 #define MAX_ROUNDS 150
 
 //TILES

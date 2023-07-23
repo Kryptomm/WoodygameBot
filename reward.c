@@ -18,7 +18,7 @@ void setMults(int arr[]) {
     edgesMult = arr[1];
     singleblockMult = arr[2];
     blocksFittingMult = arr[3];
-    blocksFittingMult = arr[4];
+    twoPieceSupportMult = arr[4];
 }
 
 RewardType twoPieceSupport(RowType* board) {
@@ -58,6 +58,7 @@ RewardType twoPieceSupport(RowType* board) {
             }
         }
     }
+    return (points * REWARD_SCALE_MULTIPLIER) / possiblePoints;
 }
 
 RewardType singleBlocksFitting(RowType* board) {
@@ -128,10 +129,10 @@ RewardType freeSpaceReward(RowType* board) {
 RewardType judgeBoard(RowType* board) {
     RewardType reward = 0;
 
-    //reward += freeSpraceMult * freeSpaceReward(board);
-    //reward += edgesMult * edgesReward(board);
-    //reward += singleblockMult * singleBlockObs(board);
-    //reward += blocksFittingMult * blocksFitting(board);
+    reward += freeSpraceMult * freeSpaceReward(board);
+    reward += edgesMult * edgesReward(board);
+    reward += singleblockMult * singleBlockObs(board);
+    reward += blocksFittingMult * singleBlocksFitting(board);
     reward += twoPieceSupportMult * twoPieceSupport(board);
 
     return reward;
