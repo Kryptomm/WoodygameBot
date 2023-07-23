@@ -12,7 +12,7 @@ typedef long RewardType;
 
 //BEHAVIOUR
 #define MODE 2
-#define MAX_ROUNDS 300
+#define MAX_ROUNDS 150
 
 //TILES
 #define MAX_TILE_HEIGHT 5

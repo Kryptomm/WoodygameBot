@@ -81,9 +81,13 @@ int simulateSpec(){
 
 void simulateRandom(){
     while(1) {
-        int randomWeights[] = {rand() % REWARD_SCALE_MULTIPLIER, rand() % REWARD_SCALE_MULTIPLIER, rand() % REWARD_SCALE_MULTIPLIER, rand() % REWARD_SCALE_MULTIPLIER};
+        int randomWeights[] = {rand() % REWARD_SCALE_MULTIPLIER,
+                                rand() % REWARD_SCALE_MULTIPLIER,
+                                rand() % REWARD_SCALE_MULTIPLIER,
+                                rand() % REWARD_SCALE_MULTIPLIER,
+                                rand() % REWARD_SCALE_MULTIPLIER};
         printf("\n");
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 5; i++) {
             printf("%d ", randomWeights[i]);
         }
         printf("\n");
