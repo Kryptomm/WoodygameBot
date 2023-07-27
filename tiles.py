@@ -109,7 +109,6 @@ tiles = [
     Tile(95, "triangleWithHoleRight", [0b01, 0b10, 0b01], 3, 2, 3),
     Tile(96, "twoblockDiagonalLeft", [0b10, 0b01], 2, 2, 2),
     Tile(97, "twoblockDiagonalRight", [0b01, 0b10], 2, 2, 2)
-    
 ]
 
 def compareTiles(tile1, tile2):
